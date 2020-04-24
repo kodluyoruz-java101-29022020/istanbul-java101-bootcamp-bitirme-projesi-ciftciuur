@@ -4,7 +4,6 @@ import com.vaadin.spring.annotation.SpringUI;
 import com.vaadin.ui.Button.ClickEvent;
 import com.vaadin.ui.Button.ClickListener;
 
-import kodluyoruz.graduation.project.ui.GraduationView;
 import kodluyoruz.graduation.project.ui.view.design.WelcomePageDesign;
 
 @SuppressWarnings("serial")

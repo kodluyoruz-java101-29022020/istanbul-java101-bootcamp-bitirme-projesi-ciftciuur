@@ -17,7 +17,6 @@ import com.vaadin.ui.VerticalLayout;
 import com.vaadin.ui.components.grid.ItemClickListener;
 
 import kodluyoruz.graduation.project.dto.BookSearchDto;
-import kodluyoruz.graduation.project.ui.GraduationView;
 
 @SuppressWarnings("serial")
 @SpringUI
