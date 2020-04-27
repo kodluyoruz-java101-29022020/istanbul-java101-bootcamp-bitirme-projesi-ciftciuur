@@ -25,6 +25,7 @@ public class BookDetail {
 
     private String printing;
 
+    @Enumerated(EnumType.ORDINAL)
     private BookCategory bookCategory;
 
     //TODO : Book (1) <--> BookDetail(1) *FK

@@ -5,7 +5,7 @@ import kodluyoruz.graduation.project.enums.BookCategory;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "books")
+@Table(name = "book")
 public class Book {
 
     @Id
