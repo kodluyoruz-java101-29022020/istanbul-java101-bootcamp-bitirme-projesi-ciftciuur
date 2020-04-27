@@ -6,7 +6,6 @@ public class AuthorDto {
 
     private String authorSurname;
 
-    private String authorMail;
 
     public String getAuthorName() {
         return authorName;
@@ -24,11 +23,4 @@ public class AuthorDto {
         this.authorSurname = authorSurname;
     }
 
-    public String getAuthorMail() {
-        return authorMail;
-    }
-
-    public void setAuthorMail(String authorMail) {
-        this.authorMail = authorMail;
-    }
 }

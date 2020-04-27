@@ -14,6 +14,7 @@ public class WelcomePageView extends WelcomePageDesign implements GraduationView
 	}
 
 	private void init() {
+		super.addStyleName("");
 		btnCreateBook.addClickListener(new ClickListener() {
 			@Override
 			public void buttonClick(ClickEvent event) {
