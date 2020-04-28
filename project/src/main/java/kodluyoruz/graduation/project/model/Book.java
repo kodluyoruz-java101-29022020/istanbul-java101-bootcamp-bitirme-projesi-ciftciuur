@@ -37,10 +37,6 @@ public class Book {
         return bookId;
     }
 
-    public void setBookId(Long bookId) {
-        this.bookId = bookId;
-    }
-
     public String getBookName() {
         return bookName;
     }
