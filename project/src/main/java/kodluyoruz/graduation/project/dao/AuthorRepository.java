@@ -16,7 +16,7 @@ public interface AuthorRepository extends CrudRepository<Author, Long> {
 	public void deleteSoftAuthor(@Param("authId") Long authId);
 
 	// This query find author for update author
-	@Query("SELECT auth FROM Author auth WHERE auth.authorId:=authId AND auth.deleted=0")
+	@Query("SELECT auth FROM Author auth WHERE auth.authorId=:authId AND auth.deleted=0")
 	public Author findByAuthorId(@Param("authId") Long authId);
 
 	// criteria : author_name -> search authors
