@@ -2,70 +2,123 @@ package kodluyoruz.graduation.project.model;
 
 import kodluyoruz.graduation.project.enums.BookCategory;
 
+import java.util.Date;
+
 import javax.persistence.*;
 
 @Entity
 @Table(name = "book")
 public class Book {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "book_id")
-    private Long bookId;
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name = "book_id")
+	private Long bookId;
 
-    private String bookName;
+	private String bookName;
 
-    private String bookNote;
-    //TODO : Book (1) <--> BookDetail(1) *FK
-    @OneToOne(mappedBy = "book", cascade = CascadeType.ALL)
-    private BookDetail bookDetail;
+	private String bookNote;
 
-    //TODO : Book(m) <--> Author(n)
-    /*
-        TODO :  book_author adında bir tablo iki tablo arasındakı entegrasyonu sağlıyacak
-     */
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinTable(name = "book_author",
-            joinColumns =
-                    {@JoinColumn(name = "book_id", referencedColumnName = "book_id")},
-            inverseJoinColumns = {
-                    @JoinColumn(name = "auth_id", referencedColumnName = "author_id")}
-    )
-    private Author author;
+	private String bookDescription;
 
-    public Long getBookId() {
-        return bookId;
-    }
+	private String bookPageCount;
 
-    public String getBookName() {
-        return bookName;
-    }
+	private String publisher;
 
-    public void setBookName(String bookName) {
-        this.bookName = bookName;
-    }
+	private Date publishingYear;
 
-    public String getBookNote() {
-        return bookNote;
-    }
+	@Enumerated(EnumType.STRING)
+	private BookCategory bookCategory;
 
-    public void setBookNote(String bookNote) {
-        this.bookNote = bookNote;
-    }
+	// this column use Soft delete -> deleted=1(deleted) , deleted=0(un deleted)
+	private Boolean deleted;
 
-    public BookDetail getBookDetail() {
-        return bookDetail;
-    }
+	/*
+	 * TODO : Book(m) <--> Author(n)
+	 * 
+	 * TODO : book_author adında bir tablo iki tablo arasındakı entegrasyonu
+	 * sağlıyacak
+	 */
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinTable(name = "book_author", joinColumns = {
+			@JoinColumn(name = "book_id", referencedColumnName = "book_id") }, inverseJoinColumns = {
+					@JoinColumn(name = "auth_id", referencedColumnName = "author_id") })
+	private Author author;
 
-    public void setBookDetail(BookDetail bookDetail) {
-        this.bookDetail = bookDetail;
-    }
+	public Long getBookId() {
+		return bookId;
+	}
 
-    public Author getAuthor() {
-        return author;
-    }
+	public String getBookName() {
+		return bookName;
+	}
 
-    public void setAuthor(Author author) {
-        this.author = author;
-    }
+	public void setBookName(String bookName) {
+		this.bookName = bookName;
+	}
+
+	public String getBookNote() {
+		return bookNote;
+	}
+
+	public void setBookNote(String bookNote) {
+		this.bookNote = bookNote;
+	}
+
+	public String getBookDescription() {
+		return bookDescription;
+	}
+
+	public void setBookDescription(String bookDescription) {
+		this.bookDescription = bookDescription;
+	}
+
+	public String getBookPageCount() {
+		return bookPageCount;
+	}
+
+	public void setBookPageCount(String bookPageCount) {
+		this.bookPageCount = bookPageCount;
+	}
+
+	public String getPublisher() {
+		return publisher;
+	}
+
+	public void setPublisher(String publisher) {
+		this.publisher = publisher;
+	}
+
+	public Date getPublishingYear() {
+		return publishingYear;
+	}
+
+	public void setPublishingYear(Date publishingYear) {
+		this.publishingYear = publishingYear;
+	}
+
+	public BookCategory getBookCategory() {
+		return bookCategory;
+	}
+
+	public void setBookCategory(BookCategory bookCategory) {
+		this.bookCategory = bookCategory;
+	}
+
+	public Author getAuthor() {
+		return author;
+	}
+
+	public void setAuthor(Author author) {
+		this.author = author;
+	}
+
+	public Boolean getDeleted() {
+		return deleted;
+	}
+
+	public void setDeleted(Boolean deleted) {
+		this.deleted = deleted;
+	}
+
 }

@@ -1,53 +1,63 @@
 package kodluyoruz.graduation.project.model;
 
-
 import javax.persistence.*;
 
 @Entity
 @Table(name = "author")
 public class Author {
 
-    @Id
-    @GeneratedValue
-    @Column(name = "author_id")
-    private Long authorId;
+	@Id
+	@GeneratedValue
+	@Column(name = "author_id")
+	private Long authorId;
 
-    private String authorName;
+	private String authorName;
 
-    private String authorSurName;
 
-    /*
-        TODO: author mapped'i aslında booktaki author
-     */
-    @OneToOne(mappedBy = "author")
-    private Book book;
+	private String authorSurName;
 
-    public Book getBook() {
-        return book;
-    }
+	private Boolean deleted;
 
-    public void setBook(Book book) {
-        this.book = book;
-    }
+	/*
+	 * TODO: author mapped'i aslında booktaki author
+	 */
+	@OneToOne(mappedBy = "author")
+	private Book book;
 
-    public Long getAuthorId() {
-        return authorId;
-    }
+	public Book getBook() {
+		return book;
+	}
 
-    public String getAuthorName() {
-        return authorName;
-    }
+	public void setBook(Book book) {
+		this.book = book;
+	}
 
-    public void setAuthorName(String authorName) {
-        this.authorName = authorName;
-    }
+	public Long getAuthorId() {
+		return authorId;
+	}
 
-    public String getAuthorSurName() {
-        return authorSurName;
-    }
+	public String getAuthorName() {
+		return authorName;
+	}
 
-    public void setAuthorSurName(String authorSurName) {
-        this.authorSurName = authorSurName;
-    }
+	public void setAuthorName(String authorName) {
+		this.authorName = authorName;
+	}
+
+	public String getAuthorSurName() {
+		return authorSurName;
+	}
+
+	public void setAuthorSurName(String authorSurName) {
+		this.authorSurName = authorSurName;
+	}
+
+	public Boolean getDeleted() {
+		return deleted;
+	}
+
+	public void setDeleted(Boolean deleted) {
+		this.deleted = deleted;
+	}
 
 }
