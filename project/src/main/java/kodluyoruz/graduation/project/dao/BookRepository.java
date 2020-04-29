@@ -24,9 +24,15 @@ public interface BookRepository extends CrudRepository<Book, Long> {
 	public List<Book> findByBookCategory(@Param("bookCategory") BookCategory bookCategory);
 
 	@Query("SELECT book FROM Book book WHERE book.deleted=0 AND  book.bookName LIKE %:bookName% ")
-	public List<Book> findByBookCategory(@Param("bookName") String bookName);
+	public List<Book> findByBookName(@Param("bookName") String bookName);
 
 	@Query("SELECT book FROM Book book WHERE book.deleted=0 ORDER BY book.publishingYear ASC")
 	public List<Book> sortBooksByRelaseDate();
+
+	@Query("SELECT book FROM Book book WHERE book.deleted=0")
+	public List<Book> getAllUnDeletedBooks();
+
+	@Query("SELECT book FROM Book book WHERE book.deleted=1")
+	public List<Book> getAllDeleted();
 
 }

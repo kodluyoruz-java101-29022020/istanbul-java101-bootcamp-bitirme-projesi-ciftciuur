@@ -44,7 +44,9 @@ public class AuthorServiceImpl implements AuthorService {
 
 	@Override
 	public void softDeleteAuthor(Long authorId) {
-		// TODO Auto-generated method stub
+		if (authorId != null) {
+			authorRepository.deleteSoftAuthor(authorId);
+		}
 
 	}
 }
