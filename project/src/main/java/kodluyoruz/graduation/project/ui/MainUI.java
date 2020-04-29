@@ -41,6 +41,7 @@ public class MainUI extends UI {
 		navigator.addView("search", bookSearchView);
 		// crud page navigates
 		navigator.addView("crud", bookCrudView);
+		bookCrudView.retrieveData();
 		navigator.navigateTo("welcome");
 
 	}

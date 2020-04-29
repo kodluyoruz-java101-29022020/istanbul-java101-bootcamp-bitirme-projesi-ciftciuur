@@ -16,15 +16,15 @@ public interface AuthorRepository extends CrudRepository<Author, Long> {
 	public void deleteSoftAuthor(@Param("authId") Long authId);
 
 	// This query find author for update author
-	@Query("SELECT auth FROM Author auth WHERE auth.authorId=:authId AND auth.deleted=0")
+	@Query("SELECT auth FROM Author auth WHERE auth.authorId=:authId AND auth.deleted=false")
 	public Author findByAuthorId(@Param("authId") Long authId);
 
 	// criteria : author_name -> search authors
-	@Query("SELECT auth FROM Author auth WHERE auth.deleted=0 AND auth.authorName LIKE %:authName% ")
+	@Query("SELECT auth FROM Author auth WHERE auth.deleted=false AND auth.authorName LIKE %:authName% ")
 	public List<Author> findByAuthorNameLike(@Param("authName") String authName);
 
 	// criteria : author_sur_name -> search authors
-	@Query("SELECT auth FROM Author auth WHERE auth.deleted=0 AND auth.authorSurName LIKE %:authSurName% ")
+	@Query("SELECT auth FROM Author auth WHERE auth.deleted=false AND auth.authorSurName LIKE %:authSurName% ")
 	public List<Author> findByAuthorSurNameLike(@Param("authSurName") String authSurName);
 
 }

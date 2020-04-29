@@ -30,7 +30,7 @@ public class Book {
 	@Enumerated(EnumType.STRING)
 	private BookCategory bookCategory;
 
-	// this column use Soft delete -> deleted=1(deleted) , deleted=0(un deleted)
+	// this column use Soft delete -> true = deleted - false = undeleted
 	private Boolean deleted;
 
 	/*

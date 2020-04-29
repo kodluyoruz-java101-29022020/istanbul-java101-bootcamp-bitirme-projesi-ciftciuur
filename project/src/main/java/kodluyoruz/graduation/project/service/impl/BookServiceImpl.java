@@ -74,7 +74,7 @@ public class BookServiceImpl implements BookService {
 
 	}
 
-	@RuntimeAspect(activate = true)
+	@RuntimeAspect(active = true)
 	@Override
 	public List<Book> getAllUnDeletedBooks() {
 		return bookRepository.getAllUnDeletedBooks();

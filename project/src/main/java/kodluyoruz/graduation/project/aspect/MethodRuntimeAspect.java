@@ -11,10 +11,10 @@ import kodluyoruz.graduation.project.annotation.RuntimeAspect;
 @Aspect
 @Component
 public class MethodRuntimeAspect {
-	@Around("@annotation(runtime)")
+	@Around("@annotation(runtimeAspect)")
 	public Object execute(ProceedingJoinPoint joinPoint, RuntimeAspect runtimeAspect) throws Throwable {
 
-		if (runtimeAspect.activate() == false) {
+		if (runtimeAspect.active() == false) {
 			return joinPoint.proceed();
 		}
 
