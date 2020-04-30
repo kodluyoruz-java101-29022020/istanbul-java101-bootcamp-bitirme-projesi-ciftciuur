@@ -11,28 +11,28 @@ import kodluyoruz.graduation.project.annotation.RuntimeAspect;
 @Aspect
 @Component
 public class MethodRuntimeAspect {
-	@Around("@annotation(runtimeAspect)")
-	public Object execute(ProceedingJoinPoint joinPoint, RuntimeAspect runtimeAspect) throws Throwable {
+    @Around("@annotation(runtimeAspect)")
+    public Object execute(ProceedingJoinPoint joinPoint, RuntimeAspect runtimeAspect) throws Throwable {
 
-		if (runtimeAspect.active() == false) {
-			return joinPoint.proceed();
-		}
+        if (!runtimeAspect.active()) {
+            return joinPoint.proceed();
+        }
 
-		String className = joinPoint.getSignature().getDeclaringType().getSimpleName();
-		String methodName = joinPoint.getSignature().getName();
+        String className = joinPoint.getSignature().getDeclaringType().getSimpleName();
+        String methodName = joinPoint.getSignature().getName();
 
-		StopWatch stopWatch = new StopWatch();
+        StopWatch stopWatch = new StopWatch();
 
-		stopWatch.start();
+        stopWatch.start();
 
-		Object result;
-		result = joinPoint.proceed();
+        Object result;
+        result = joinPoint.proceed();
 
-		stopWatch.stop();
+        stopWatch.stop();
 
-		System.out.println(className + "#" + methodName + " runned in  " + stopWatch.getTotalTimeMillis() + " ms");
+        System.out.println("Class : " + className + "<---> " + "Function " + methodName + " runned in  " + stopWatch.getTotalTimeMillis() + " ms");
 
-		return result;
-	}
+        return result;
+    }
 
 }
