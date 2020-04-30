@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 import kodluyoruz.graduation.project.annotation.RuntimeAspect;
 import kodluyoruz.graduation.project.dao.AuthorRepository;
 import kodluyoruz.graduation.project.model.Author;
+import kodluyoruz.graduation.project.model.Book;
 import kodluyoruz.graduation.project.service.AuthorService;
 
 @Service
@@ -59,4 +60,6 @@ public class AuthorServiceImpl implements AuthorService {
 		return authorRepository.getAllUnDeletedAuthors();
 
 	}
+
+	
 }

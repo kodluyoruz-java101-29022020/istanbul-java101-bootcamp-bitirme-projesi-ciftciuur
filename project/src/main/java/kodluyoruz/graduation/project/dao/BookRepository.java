@@ -17,7 +17,7 @@ public interface BookRepository extends CrudRepository<Book, Long> {
 	public void deleteSoftBook(@Param("bookId") Long bookId);
 
 	// This query find book for update book
-	@Query("SELECT book FROM Book book WHERE book.bookId=:bookId AND book.deleted=false")
+	@Query("SELECT book FROM Book book WHERE book.bookId=:bookId AND book.deleted=false or book.deleted=null")
 	public Book findByBookId(@Param("bookId") Long bookId);
 
 	@Query("SELECT book FROM Book book WHERE book.bookCategory=:bookCategory AND book.deleted=false or book.deleted=null")

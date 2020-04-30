@@ -51,7 +51,7 @@ public class Book {
 	 * TODO : book_author adında bir tablo iki tablo arasındakı entegrasyonu
 	 * sağlıyacak
 	 */
-	@ManyToMany(cascade = CascadeType.ALL)
+	@ManyToMany(cascade = CascadeType.PERSIST)
 	@JoinTable(name = "book_author", joinColumns = {
 			@JoinColumn(name = "book_id", referencedColumnName = "book_id") }, inverseJoinColumns = {
 					@JoinColumn(name = "auth_id", referencedColumnName = "author_id") })
@@ -135,6 +135,14 @@ public class Book {
 
 	public void setDeleted(Boolean deleted) {
 		this.deleted = deleted;
+	}
+
+	@Override
+	public String toString() {
+		return "Book [bookId=" + bookId + ", bookName=" + bookName + ", bookNote=" + bookNote + ", bookDescription="
+				+ bookDescription + ", bookPageCount=" + bookPageCount + ", publisher=" + publisher
+				+ ", publishingYear=" + publishingYear + ", bookCategory=" + bookCategory + ", deleted=" + deleted
+				+ ", author=" + author + "]";
 	}
 
 }

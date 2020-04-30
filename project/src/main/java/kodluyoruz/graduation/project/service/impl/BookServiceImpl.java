@@ -17,7 +17,7 @@ import kodluyoruz.graduation.project.service.BookService;
 @Service
 public class BookServiceImpl implements BookService {
 	@Autowired
-	BookRepository bookRepository;
+	private BookRepository bookRepository;
 
 	@Override
 	@Transactional
@@ -86,5 +86,10 @@ public class BookServiceImpl implements BookService {
 	@Override
 	public List<BookCategory> getAllBookCategories() {
 		return Arrays.asList(BookCategory.values());
+	}
+
+	@Override
+	public Book findByBookId(Long bookId) {
+		return bookRepository.findByBookId(bookId);
 	}
 }

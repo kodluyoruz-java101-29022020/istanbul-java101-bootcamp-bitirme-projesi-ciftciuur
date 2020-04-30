@@ -26,4 +26,6 @@ public interface BookService {
 
 	public List<BookCategory> getAllBookCategories();
 
+	public Book findByBookId(Long bookId);
+
 }

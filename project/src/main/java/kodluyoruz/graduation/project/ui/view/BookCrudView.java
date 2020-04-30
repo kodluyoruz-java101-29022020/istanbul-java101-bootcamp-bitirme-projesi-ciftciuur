@@ -167,6 +167,7 @@ public class BookCrudView extends VerticalLayout implements GraduationView {
 
 		} else {
 
+			// TODO -> save fonksiyonu calıstı fakat book_authors tablosuna yazmadı !!
 			// TODO : enumların ısımlerı gelmeli -> vaadin'de bakılıcak
 			form.getDfBookPublishingDate().setValue(LocalDate.now());
 			form.getCmbBookCategory().setItems(bookService.getAllBookCategories());
