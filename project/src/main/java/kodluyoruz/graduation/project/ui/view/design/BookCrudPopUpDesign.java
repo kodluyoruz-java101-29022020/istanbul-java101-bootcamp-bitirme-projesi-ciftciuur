@@ -7,7 +7,6 @@ import com.vaadin.ui.ComboBox;
 import com.vaadin.ui.DateField;
 import com.vaadin.ui.HorizontalLayout;
 import com.vaadin.ui.Label;
-import com.vaadin.ui.TextArea;
 import com.vaadin.ui.TextField;
 import com.vaadin.ui.VerticalLayout;
 import com.vaadin.ui.declarative.Design;
@@ -47,7 +46,7 @@ public class BookCrudPopUpDesign extends VerticalLayout {
 	protected ComboBox<kodluyoruz.graduation.project.enums.BookCategory> cmbBookCategory;
 	protected HorizontalLayout hlLayoutBookNote;
 	protected Label lblBookNote;
-	protected TextArea txtAreaBookNote;
+	protected TextField txtBookNote;
 	protected HorizontalLayout hlLayoutButtons;
 	protected Button btnSave;
 	protected Button btnUpdate;

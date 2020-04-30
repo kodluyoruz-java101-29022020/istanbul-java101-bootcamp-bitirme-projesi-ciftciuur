@@ -1,5 +1,6 @@
 package kodluyoruz.graduation.project.ui.view;
 
+import java.time.LocalDate;
 import java.util.Collection;
 import java.util.List;
 
@@ -7,16 +8,21 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import com.vaadin.data.provider.ConfigurableFilterDataProvider;
 import com.vaadin.data.provider.ListDataProvider;
+import com.vaadin.icons.VaadinIcons;
 import com.vaadin.server.SerializablePredicate;
 import com.vaadin.shared.Registration;
 import com.vaadin.spring.annotation.SpringUI;
+import com.vaadin.ui.Button;
 import com.vaadin.ui.Grid;
 import com.vaadin.ui.Grid.ItemClick;
 import com.vaadin.ui.Grid.SelectionMode;
 import com.vaadin.ui.Label;
 import com.vaadin.ui.VerticalLayout;
 import com.vaadin.ui.Window;
+import com.vaadin.ui.Button.ClickEvent;
+import com.vaadin.ui.Button.ClickListener;
 import com.vaadin.ui.components.grid.ItemClickListener;
+import com.vaadin.ui.themes.ValoTheme;
 
 import kodluyoruz.graduation.project.model.Book;
 import kodluyoruz.graduation.project.service.BookService;
@@ -29,6 +35,7 @@ import kodluyoruz.graduation.project.ui.view.form.BookCrudPopUpForm;
 public class BookCrudView extends VerticalLayout implements GraduationView {
 	protected Registration gridItemClickListener;
 	protected Grid<Book> grid;
+	protected Button newButton;
 	@Autowired
 	private BookService bookService;
 
@@ -43,7 +50,19 @@ public class BookCrudView extends VerticalLayout implements GraduationView {
 		setSpacing(true);
 
 		addComponent(new Label("Kitaplarım"));
-
+		newButton = new Button("Kitap Ekle");
+		newButton.setWidth("120px");
+		newButton.setDisableOnClick(false);
+		newButton.setIcon(VaadinIcons.PLUS);
+		newButton.addStyleName(ValoTheme.BUTTON_PRIMARY);
+		newButton.addStyleName(ValoTheme.BUTTON_SMALL);
+		newButton.addClickListener(new ClickListener() {
+			@Override
+			public void buttonClick(ClickEvent event) {
+				openForm(null);
+			}
+		});
+		addComponent(newButton);
 		grid = new Grid<Book>();
 		grid.setSizeFull();
 		grid.setSelectionMode(SelectionMode.SINGLE);
@@ -83,17 +102,39 @@ public class BookCrudView extends VerticalLayout implements GraduationView {
 	}
 
 	private void openForm(Book book) {
+		Window winForm = new Window();
+		winForm.setWidth("75%");
+		winForm.setHeight("75%");
+		BookCrudPopUpForm form = new BookCrudPopUpForm();
 		// eğer kitap düzenlenmek istenmişse
 		if (book != null) {
-			Window winForm = new Window();
-			BookCrudPopUpForm form = new BookCrudPopUpForm();
 
 			winForm.setContent(form);
-			winForm.center();
-			MainUI.getCurrent().addWindow(winForm);
+
 		} else {
-			// yeni kitap eklemesi yapılacak
+			// TODO : enumların ısımlerı gelmeli -> vaadin'de bakılıcak
+			form.getDfBookPublishingDate().setValue(LocalDate.now());
+			form.getCmbBookCategory().setItems(bookService.getAllBookCategories());
+			form.getBtnDelete().setEnabled(false);
+			form.getBtnUpdate().setEnabled(false);
+
+			winForm.setContent(form);
 		}
 
+		winForm.center();
+		MainUI.getCurrent().addWindow(winForm);
+
+	}
+
+	private String save() {
+		return null;
+	}
+
+	private String update() {
+		return null;
+	}
+
+	private String delete() {
+		return null;
 	}
 }

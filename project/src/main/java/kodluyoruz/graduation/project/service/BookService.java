@@ -24,4 +24,6 @@ public interface BookService {
 
 	public List<Book> getAllUnDeletedBooks();
 
+	public List<BookCategory> getAllBookCategories();
+
 }

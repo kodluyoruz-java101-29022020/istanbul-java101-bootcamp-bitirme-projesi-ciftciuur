@@ -1,6 +1,7 @@
 package kodluyoruz.graduation.project.service.impl;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -79,5 +80,10 @@ public class BookServiceImpl implements BookService {
 	public List<Book> getAllUnDeletedBooks() {
 		return bookRepository.getAllUnDeletedBooks();
 
+	}
+
+	@Override
+	public List<BookCategory> getAllBookCategories() {
+		return Arrays.asList(BookCategory.values());
 	}
 }

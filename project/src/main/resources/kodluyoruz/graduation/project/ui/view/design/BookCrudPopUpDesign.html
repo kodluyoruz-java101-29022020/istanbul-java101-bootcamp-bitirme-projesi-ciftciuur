@@ -6,63 +6,47 @@
   <meta name="vaadin-version" content="8.1.5">
  </head>
  <body>
-  <vaadin-vertical-layout size-full>
+  <vaadin-vertical-layout responsive size-full>
    <vaadin-horizontal-layout size-full _id="hlLayoutBookId" :middle :center>
-    <vaadin-label caption="Kitap ID" plain-text _id="lblBookId" :middle :center>
-      Label 
-    </vaadin-label>
+    <vaadin-label caption="Kitap ID" plain-text _id="lblBookId" :middle :center></vaadin-label>
     <vaadin-text-field readonly _id="txtBookId" :middle :center></vaadin-text-field>
    </vaadin-horizontal-layout>
    <vaadin-horizontal-layout size-full _id="hlLayoutBookName" :middle :center>
-    <vaadin-label caption="Kitap Adı" plain-text _id="blBookName" :middle :center>
-      Label 
-    </vaadin-label>
-    <vaadin-text-field readonly _id="txtBookName" :middle :center></vaadin-text-field>
+    <vaadin-label caption="Kitap Adı" plain-text _id="blBookName" :middle :center></vaadin-label>
+    <vaadin-text-field _id="txtBookName" :middle :center></vaadin-text-field>
    </vaadin-horizontal-layout>
    <vaadin-horizontal-layout size-full _id="hlLayoutBookDesc" :middle :center>
-    <vaadin-label caption="Kitap Açıklaması" plain-text _id="lblBookDescription" :middle :center>
-      Label 
-    </vaadin-label>
-    <vaadin-text-field readonly _id="txtBookDescription" :middle :center></vaadin-text-field>
+    <vaadin-label caption="Kitap Açıklaması" plain-text _id="lblBookDescription" :middle :center></vaadin-label>
+    <vaadin-text-field _id="txtBookDescription" :middle :center></vaadin-text-field>
    </vaadin-horizontal-layout>
    <vaadin-horizontal-layout size-full _id="hlLayoutBookPageCount">
-    <vaadin-label caption="Kitap Sayfası" plain-text _id="lblBookPageCount" :middle :center>
-      Label 
-    </vaadin-label>
-    <vaadin-text-field readonly _id="txtBookPageCount" :middle :center></vaadin-text-field>
+    <vaadin-label caption="Kitap Sayfası" plain-text _id="lblBookPageCount" :middle :center></vaadin-label>
+    <vaadin-text-field _id="txtBookPageCount" :middle :center></vaadin-text-field>
    </vaadin-horizontal-layout>
    <vaadin-horizontal-layout size-full _id="hlLayoutBookPublisher">
-    <vaadin-label caption="Kitap YayımEvi" plain-text _id="lblBookPublisher" :middle :center>
-      Label 
-    </vaadin-label>
-    <vaadin-text-field readonly _id="txtBookPublisher" :middle :center></vaadin-text-field>
+    <vaadin-label caption="Kitap YayımEvi" plain-text _id="lblBookPublisher" :middle :center></vaadin-label>
+    <vaadin-text-field _id="txtBookPublisher" :middle :center></vaadin-text-field>
    </vaadin-horizontal-layout>
    <vaadin-horizontal-layout size-full _id="hlLayoutBookPublishDate" :middle :center>
-    <vaadin-label caption="Kitap Tarihi" plain-text _id="lblBookPublishinYear" :middle :center>
-      Label 
-    </vaadin-label>
+    <vaadin-label caption="Kitap Tarihi" plain-text _id="lblBookPublishinYear" :middle :center></vaadin-label>
     <vaadin-date-field _id="dfBookPublishingDate" :middle :center></vaadin-date-field>
    </vaadin-horizontal-layout>
    <vaadin-horizontal-layout size-full _id="hlLayoutBookCategory">
-    <vaadin-label caption="Kitap Kategorisi" plain-text _id="lblBookCategory" :middle :center>
-      Label 
-    </vaadin-label>
+    <vaadin-label caption="Kitap Kategorisi" plain-text _id="lblBookCategory" :middle :center></vaadin-label>
     <vaadin-combo-box data-item-type="kodluyoruz.graduation.project.enums.BookCategory" _id="cmbBookCategory" :middle :center></vaadin-combo-box>
    </vaadin-horizontal-layout>
-   <vaadin-horizontal-layout size-full _id="hlLayoutBookNote">
-    <vaadin-label caption="Kitap Not" plain-text _id="lblBookNote" :middle :center>
-      Label 
-    </vaadin-label>
-    <vaadin-text-area _id="txtAreaBookNote" :middle :center></vaadin-text-area>
+   <vaadin-horizontal-layout size-full _id="hlLayoutBookNote" :center>
+    <vaadin-label caption="Kitap Not" plain-text _id="lblBookNote" :middle :center></vaadin-label>
+    <vaadin-text-field _id="txtBookNote" :middle :center></vaadin-text-field>
    </vaadin-horizontal-layout>
-   <vaadin-horizontal-layout size-full _id="hlLayoutButtons">
-    <vaadin-button icon="fonticon://Vaadin-Icons/e771" style-name="small friendly" width="110px" plain-text _id="btnSave" :bottom :right>
+   <vaadin-horizontal-layout size-full _id="hlLayoutButtons" :middle :center>
+    <vaadin-button icon="fonticon://Vaadin-Icons/e771" style-name="small friendly" width="110px" plain-text _id="btnSave" :middle :center>
       Kaydet 
     </vaadin-button>
-    <vaadin-button icon="fonticon://Vaadin-Icons/e771" style-name="primary small" width="110px" plain-text _id="btnUpdate" :bottom :center>
+    <vaadin-button icon="fonticon://Vaadin-Icons/e771" style-name="primary small" width="110px" plain-text _id="btnUpdate" :middle :center>
       Güncelle 
     </vaadin-button>
-    <vaadin-button icon="fonticon://Vaadin-Icons/e69a" style-name="danger small" width="110px" plain-text _id="btnDelete" :bottom :center>
+    <vaadin-button icon="fonticon://Vaadin-Icons/e69a" style-name="danger small" width="110px" plain-text _id="btnDelete" :middle :center>
       Sil 
     </vaadin-button>
    </vaadin-horizontal-layout>
