@@ -73,8 +73,19 @@ public class BookCrudView extends VerticalLayout implements GraduationView {
 
 		/* set grid columns */
 
+		grid.addColumn(Book::getBookId).setCaption("Kitap ID");
+
 		grid.addColumn(Book::getBookName).setCaption("Kitap Adı");
+
+		grid.addColumn(Book::getBookNote).setCaption("Kitap Notu");
+
+		grid.addColumn(Book::getBookDescription).setCaption("Kitap Açıklaması");
+
 		grid.addColumn(Book::getBookPageCount).setCaption("Kitap Sayfa Sayısı");
+
+		grid.addColumn(Book::getPublisher).setCaption("Kitap Yayımevi");
+
+		grid.addColumn(Book::getPublishingYear).setCaption("Kitap Yayım Yılı");
 
 		gridItemClickListener = grid.addItemClickListener(new ItemClickListener<Book>() {
 			@Override
