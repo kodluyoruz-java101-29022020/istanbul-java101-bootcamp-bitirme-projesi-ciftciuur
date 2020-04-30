@@ -34,7 +34,6 @@ import kodluyoruz.graduation.project.ui.view.form.BookCrudPopUpForm;
 
 @SuppressWarnings("serial")
 @SpringUI
-
 public class BookCrudView extends VerticalLayout implements GraduationView {
 	protected Registration gridItemClickListener;
 	protected Grid<Book> grid;
@@ -130,7 +129,7 @@ public class BookCrudView extends VerticalLayout implements GraduationView {
 
 			form.getTxtBookName().setValue(book.getBookName());
 
-			form.getCmbBookAuthor().setValue(book.getAuthor());
+			// form.getCmbBookAuthor().setValue(book.getAuthor());
 
 			form.getTxtBookNote().setValue(book.getBookNote());
 
@@ -150,7 +149,7 @@ public class BookCrudView extends VerticalLayout implements GraduationView {
 				@Override
 				public void buttonClick(ClickEvent event) {
 					Book tempBook = new Book();
-					tempBook.setAuthor(form.getCmbBookAuthor().getValue());
+					// tempBook.setAuthor(form.getCmbBookAuthor().getValue());
 					tempBook.setBookCategory(form.getCmbBookCategory().getValue());
 					tempBook.setBookDescription(form.getTxtBookDescription().getValue());
 					tempBook.setBookName(form.getTxtBookName().getValue());
@@ -180,7 +179,7 @@ public class BookCrudView extends VerticalLayout implements GraduationView {
 				@Override
 				public void buttonClick(ClickEvent event) {
 					Book tempBook = new Book();
-					tempBook.setAuthor(form.getCmbBookAuthor().getValue());
+					// tempBook.setAuthor(form.getCmbBookAuthor().getValue());
 					tempBook.setBookCategory(form.getCmbBookCategory().getValue());
 					tempBook.setBookDescription(form.getTxtBookDescription().getValue());
 					tempBook.setBookName(form.getTxtBookName().getValue());
@@ -206,6 +205,7 @@ public class BookCrudView extends VerticalLayout implements GraduationView {
 
 	private String save(Book book) {
 		if (book != null) {
+			// authorService.saveAuthor(book.getAuthor());
 			bookService.saveBook(book);
 			return "İşlem başarılı";
 		} else {

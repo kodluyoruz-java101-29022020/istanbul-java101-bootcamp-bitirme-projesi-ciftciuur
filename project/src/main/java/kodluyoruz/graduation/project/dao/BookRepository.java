@@ -13,7 +13,7 @@ import kodluyoruz.graduation.project.model.Book;
 @Repository
 public interface BookRepository extends CrudRepository<Book, Long> {
 
-	@Query("UPDATE Book book set book.deleted=1 WHERE book.bookId=:bookId")
+	@Query("UPDATE Book book set book.deleted=true WHERE book.bookId=:bookId")
 	public void deleteSoftBook(@Param("bookId") Long bookId);
 
 	// This query find book for update book

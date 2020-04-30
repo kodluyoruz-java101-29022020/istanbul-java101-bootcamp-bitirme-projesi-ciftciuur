@@ -1,10 +1,22 @@
 package kodluyoruz.graduation.project.model;
 
-import kodluyoruz.graduation.project.enums.BookCategory;
-
 import java.util.Date;
+import java.util.Set;
 
-import javax.persistence.*;
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.Table;
+
+import kodluyoruz.graduation.project.enums.BookCategory;
 
 @Entity
 @Table(name = "book")
@@ -39,11 +51,23 @@ public class Book {
 	 * TODO : book_author adında bir tablo iki tablo arasındakı entegrasyonu
 	 * sağlıyacak
 	 */
-	@OneToOne(cascade = CascadeType.ALL)
+	@ManyToMany(cascade = CascadeType.ALL)
 	@JoinTable(name = "book_author", joinColumns = {
 			@JoinColumn(name = "book_id", referencedColumnName = "book_id") }, inverseJoinColumns = {
 					@JoinColumn(name = "auth_id", referencedColumnName = "author_id") })
-	private Author author;
+	private Set<Author> author;
+
+	public void setBookId(Long bookId) {
+		this.bookId = bookId;
+	}
+
+	public Set<Author> getAuthor() {
+		return author;
+	}
+
+	public void setAuthor(Set<Author> author) {
+		this.author = author;
+	}
 
 	public Long getBookId() {
 		return bookId;
@@ -103,14 +127,6 @@ public class Book {
 
 	public void setBookCategory(BookCategory bookCategory) {
 		this.bookCategory = bookCategory;
-	}
-
-	public Author getAuthor() {
-		return author;
-	}
-
-	public void setAuthor(Author author) {
-		this.author = author;
 	}
 
 	public Boolean getDeleted() {

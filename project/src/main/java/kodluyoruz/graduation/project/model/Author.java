@@ -1,5 +1,8 @@
 package kodluyoruz.graduation.project.model;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import javax.persistence.*;
 
 @Entity
@@ -13,7 +16,6 @@ public class Author {
 
 	private String authorName;
 
-
 	private String authorSurName;
 
 	private Boolean deleted;
@@ -21,15 +23,19 @@ public class Author {
 	/*
 	 * TODO: author mapped'i aslında booktaki author
 	 */
-	@OneToOne(mappedBy = "author")
-	private Book book;
+	@ManyToMany(mappedBy = "author")
+	private Set<Book> book = new HashSet<>();
 
-	public Book getBook() {
+	public Set<Book> getBook() {
 		return book;
 	}
 
-	public void setBook(Book book) {
+	public void setBook(Set<Book> book) {
 		this.book = book;
+	}
+
+	public void setAuthorId(Long authorId) {
+		this.authorId = authorId;
 	}
 
 	public Long getAuthorId() {
