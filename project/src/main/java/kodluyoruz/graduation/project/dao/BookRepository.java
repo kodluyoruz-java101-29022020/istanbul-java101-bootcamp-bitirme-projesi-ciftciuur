@@ -20,7 +20,7 @@ public interface BookRepository extends CrudRepository<Book, Long> {
 	@Query("SELECT book FROM Book book WHERE book.bookId=:bookId AND book.deleted=false")
 	public Book findByBookId(@Param("bookId") Long bookId);
 
-	@Query("SELECT book FROM Book book WHERE book.bookCategory=:bookCategory AND book.deleted=false")
+	@Query("SELECT book FROM Book book WHERE book.bookCategory=:bookCategory AND book.deleted=false or book.deleted=null")
 	public List<Book> findByBookCategory(@Param("bookCategory") BookCategory bookCategory);
 
 	@Query("SELECT book FROM Book book WHERE book.deleted=false AND  book.bookName LIKE %:bookName% ")
@@ -29,10 +29,10 @@ public interface BookRepository extends CrudRepository<Book, Long> {
 	@Query("SELECT book FROM Book book WHERE book.deleted=false ORDER BY book.publishingYear ASC")
 	public List<Book> sortBooksByRelaseDate();
 
-	@Query("SELECT book FROM Book book WHERE book.deleted=false")
+	@Query("SELECT book FROM Book book WHERE book.deleted=false or book.deleted=null")
 	public List<Book> getAllUnDeletedBooks();
 
-	@Query("SELECT book FROM Book book WHERE book.deleted=true")
+	@Query("SELECT book FROM Book book WHERE book.deleted=true or book.deleted=null")
 	public List<Book> getAllDeleted();
 
 }

@@ -27,6 +27,7 @@ import com.vaadin.ui.components.grid.ItemClickListener;
 import com.vaadin.ui.themes.ValoTheme;
 
 import kodluyoruz.graduation.project.model.Book;
+import kodluyoruz.graduation.project.service.AuthorService;
 import kodluyoruz.graduation.project.service.BookService;
 import kodluyoruz.graduation.project.ui.MainUI;
 import kodluyoruz.graduation.project.ui.view.form.BookCrudPopUpForm;
@@ -40,6 +41,9 @@ public class BookCrudView extends VerticalLayout implements GraduationView {
 	protected Button newButton;
 	@Autowired
 	private BookService bookService;
+
+	@Autowired
+	private AuthorService authorService;
 
 	public BookCrudView() {
 		init();
@@ -155,6 +159,7 @@ public class BookCrudView extends VerticalLayout implements GraduationView {
 					tempBook.setPublisher(form.getTxtBookPublisher().getValue());
 					tempBook.setPublishingYear(java.util.Date.from(form.getDfBookPublishingDate().getValue()
 							.atStartOfDay().atZone(ZoneId.systemDefault()).toInstant()));
+					tempBook.setDeleted(true);
 					Notification.show(update(tempBook));
 				}
 			});
@@ -162,11 +167,34 @@ public class BookCrudView extends VerticalLayout implements GraduationView {
 			winForm.setContent(form);
 
 		} else {
+
 			// TODO : enumların ısımlerı gelmeli -> vaadin'de bakılıcak
 			form.getDfBookPublishingDate().setValue(LocalDate.now());
 			form.getCmbBookCategory().setItems(bookService.getAllBookCategories());
+			form.getCmbBookAuthor().setItems(authorService.getAllUnDeletedAuthors());
 			form.getBtnDelete().setEnabled(false);
 			form.getBtnUpdate().setEnabled(false);
+
+			form.getBtnSave().addClickListener(new ClickListener() {
+
+				@Override
+				public void buttonClick(ClickEvent event) {
+					Book tempBook = new Book();
+					tempBook.setAuthor(form.getCmbBookAuthor().getValue());
+					tempBook.setBookCategory(form.getCmbBookCategory().getValue());
+					tempBook.setBookDescription(form.getTxtBookDescription().getValue());
+					tempBook.setBookName(form.getTxtBookName().getValue());
+					tempBook.setBookNote(form.getTxtBookNote().getValue());
+					tempBook.setBookPageCount(form.getTxtBookPageCount().getValue());
+					tempBook.setPublisher(form.getTxtBookPublisher().getValue());
+					tempBook.setPublishingYear(java.util.Date.from(form.getDfBookPublishingDate().getValue()
+							.atStartOfDay().atZone(ZoneId.systemDefault()).toInstant()));
+					tempBook.setDeleted(true);
+					Notification.show(save(tempBook));
+				}
+			});
+
+			winForm.setContent(form);
 
 			winForm.setContent(form);
 		}
@@ -177,7 +205,12 @@ public class BookCrudView extends VerticalLayout implements GraduationView {
 	}
 
 	private String save(Book book) {
-		return null;
+		if (book != null) {
+			bookService.saveBook(book);
+			return "İşlem başarılı";
+		} else {
+			return "Kayıt eklerken hata oluştu";
+		}
 	}
 
 	private String update(Book book) {

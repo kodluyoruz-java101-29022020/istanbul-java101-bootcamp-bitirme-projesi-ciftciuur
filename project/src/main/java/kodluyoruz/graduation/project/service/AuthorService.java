@@ -1,5 +1,7 @@
 package kodluyoruz.graduation.project.service;
 
+import java.util.List;
+
 import org.springframework.stereotype.Service;
 
 import kodluyoruz.graduation.project.model.Author;
@@ -14,4 +16,6 @@ public interface AuthorService {
 	public void softDeleteAuthor(Long authorId);
 
 	public void updateAuthor(Long authorId, Author author);
+
+	public List<Author> getAllUnDeletedAuthors();
 }
