@@ -1,6 +1,7 @@
 package kodluyoruz.graduation.project.ui.view;
 
 import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.Collection;
 import java.util.List;
 
@@ -17,6 +18,7 @@ import com.vaadin.ui.Grid;
 import com.vaadin.ui.Grid.ItemClick;
 import com.vaadin.ui.Grid.SelectionMode;
 import com.vaadin.ui.Label;
+import com.vaadin.ui.Notification;
 import com.vaadin.ui.VerticalLayout;
 import com.vaadin.ui.Window;
 import com.vaadin.ui.Button.ClickEvent;
@@ -120,6 +122,43 @@ public class BookCrudView extends VerticalLayout implements GraduationView {
 		// eğer kitap düzenlenmek istenmişse
 		if (book != null) {
 
+			form.getTxtBookId().setValue(book.getBookId().toString());
+
+			form.getTxtBookName().setValue(book.getBookName());
+
+			form.getCmbBookAuthor().setValue(book.getAuthor());
+
+			form.getTxtBookNote().setValue(book.getBookNote());
+
+			form.getTxtBookDescription().setValue(book.getBookDescription());
+
+			form.getTxtBookPageCount().setValue(book.getBookPageCount());
+
+			form.getTxtBookPublisher().setValue(book.getPublisher());
+
+			form.getCmbBookCategory().setValue(book.getBookCategory());
+
+			form.getDfBookPublishingDate()
+					.setValue(book.getPublishingYear().toInstant().atZone(ZoneId.systemDefault()).toLocalDate());
+
+			form.getBtnUpdate().addClickListener(new ClickListener() {
+
+				@Override
+				public void buttonClick(ClickEvent event) {
+					Book tempBook = new Book();
+					tempBook.setAuthor(form.getCmbBookAuthor().getValue());
+					tempBook.setBookCategory(form.getCmbBookCategory().getValue());
+					tempBook.setBookDescription(form.getTxtBookDescription().getValue());
+					tempBook.setBookName(form.getTxtBookName().getValue());
+					tempBook.setBookNote(form.getTxtBookNote().getValue());
+					tempBook.setBookPageCount(form.getTxtBookPageCount().getValue());
+					tempBook.setPublisher(form.getTxtBookPublisher().getValue());
+					tempBook.setPublishingYear(java.util.Date.from(form.getDfBookPublishingDate().getValue()
+							.atStartOfDay().atZone(ZoneId.systemDefault()).toInstant()));
+					Notification.show(update(tempBook));
+				}
+			});
+
 			winForm.setContent(form);
 
 		} else {
@@ -137,15 +176,15 @@ public class BookCrudView extends VerticalLayout implements GraduationView {
 
 	}
 
-	private String save() {
+	private String save(Book book) {
 		return null;
 	}
 
-	private String update() {
+	private String update(Book book) {
 		return null;
 	}
 
-	private String delete() {
+	private String delete(Long bookId) {
 		return null;
 	}
 }

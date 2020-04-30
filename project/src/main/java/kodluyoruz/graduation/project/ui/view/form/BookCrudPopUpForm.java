@@ -71,6 +71,14 @@ public class BookCrudPopUpForm extends BookCrudPopUpDesign {
 		super.dfBookPublishingDate = dfBookPublishingDate;
 	}
 
+	public ComboBox<kodluyoruz.graduation.project.model.Author> getCmbBookAuthor() {
+		return super.cmbBookAuthor;
+	}
+
+	public void setCmbBookAuthor(ComboBox<kodluyoruz.graduation.project.model.Author> cmbBookAuthor) {
+		super.cmbBookAuthor = cmbBookAuthor;
+	}
+
 	public ComboBox<kodluyoruz.graduation.project.enums.BookCategory> getCmbBookCategory() {
 		return super.cmbBookCategory;
 	}

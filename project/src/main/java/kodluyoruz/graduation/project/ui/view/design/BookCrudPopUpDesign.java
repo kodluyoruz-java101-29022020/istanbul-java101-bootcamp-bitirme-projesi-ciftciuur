@@ -29,6 +29,9 @@ public class BookCrudPopUpDesign extends VerticalLayout {
 	protected HorizontalLayout hlLayoutBookName;
 	protected Label blBookName;
 	protected TextField txtBookName;
+	protected HorizontalLayout hlLayoutBookId1;
+	protected Label lblBookAuthor;
+	protected ComboBox<kodluyoruz.graduation.project.model.Author> cmbBookAuthor;
 	protected HorizontalLayout hlLayoutBookDesc;
 	protected Label lblBookDescription;
 	protected TextField txtBookDescription;

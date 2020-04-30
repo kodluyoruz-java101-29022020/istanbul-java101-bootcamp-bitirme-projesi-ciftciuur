@@ -30,7 +30,7 @@ public class MethodRuntimeAspect {
 
         stopWatch.stop();
 
-        System.out.println("Class : " + className + "<---> " + "Function " + methodName + " runned in  " + stopWatch.getTotalTimeMillis() + " ms");
+        System.out.println("Class name =  " + className + " <---> " + "Function name =  " + methodName + " runned in  " + stopWatch.getTotalTimeMillis() + " ms");
 
         return result;
     }

@@ -15,6 +15,14 @@
     <vaadin-label caption="Kitap Adı" plain-text _id="blBookName" :middle :center></vaadin-label>
     <vaadin-text-field _id="txtBookName" :middle :center></vaadin-text-field>
    </vaadin-horizontal-layout>
+   <vaadin-horizontal-layout size-full _id="hlLayoutBookId1" :middle :center>
+    <vaadin-label caption="Kitap Yazarı" plain-text _id="lblBookAuthor" :middle :center></vaadin-label>
+    <vaadin-combo-box data-item-type="java.lang.String" _id="cmbBookAuthor" :middle :center>
+     <option item="Option1">Option 1</option>
+     <option item="Option2">Option 2</option>
+     <option item="Option3">Option 3</option>
+    </vaadin-combo-box>
+   </vaadin-horizontal-layout>
    <vaadin-horizontal-layout size-full _id="hlLayoutBookDesc" :middle :center>
     <vaadin-label caption="Kitap Açıklaması" plain-text _id="lblBookDescription" :middle :center></vaadin-label>
     <vaadin-text-field _id="txtBookDescription" :middle :center></vaadin-text-field>

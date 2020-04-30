@@ -49,6 +49,7 @@ public class BookServiceImpl implements BookService {
 	}
 
 	@Override
+	@Transactional
 	public void softDeleteBook(Long bookId) {
 		if (bookId != null) {
 			bookRepository.deleteSoftBook(bookId);
