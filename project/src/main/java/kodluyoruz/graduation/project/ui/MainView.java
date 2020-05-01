@@ -74,9 +74,17 @@ public class MainView extends HorizontalLayout implements View {
 
 			}
 		});
+		MenuItemComponent menuItem_3 = new MenuItemComponent("Api Listesi", new MenuItemClickListener() {
+			@Override
+			public void clicked() {
+				// TODO : Call swagger page
+
+			}
+		});
 
 		vlMenu.addComponent(menuItem_1);
 		vlMenu.addComponent(menuItem_2);
+		vlMenu.addComponent(menuItem_3);
 
 		vlMain = new VerticalLayout();
 		vlMain.setSizeFull();
