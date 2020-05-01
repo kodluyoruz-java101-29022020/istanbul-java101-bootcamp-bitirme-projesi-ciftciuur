@@ -55,7 +55,7 @@ public class BookCrudView extends VerticalLayout implements GraduationView {
 		setSpacing(true);
 
 		addComponent(new Label("Kitaplarım"));
-		newButton = new Button("Kitap Ekle");
+		newButton = new Button("Yeni Kayıt");
 		newButton.setWidth("120px");
 		newButton.setDisableOnClick(false);
 		newButton.setIcon(VaadinIcons.PLUS);

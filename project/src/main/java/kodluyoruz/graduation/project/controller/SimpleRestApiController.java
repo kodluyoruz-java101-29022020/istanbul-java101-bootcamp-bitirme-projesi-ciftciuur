@@ -45,8 +45,8 @@ public class SimpleRestApiController {
 		System.err.println("kayıt yapıldı");
 	}
 
-	@RequestMapping(value = "/api/crud/save", method = RequestMethod.POST)
-	public void saveBook(Book book, Set<Author> author) {
+	@RequestMapping(value = "/api/crud/book/save", method = RequestMethod.POST)
+	public void saveBookDetail(Book book, Set<Author> author) {
 
 		book.setAuthor(author);
 		bookService.saveBook(book);

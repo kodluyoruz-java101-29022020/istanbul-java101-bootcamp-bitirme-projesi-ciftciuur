@@ -16,9 +16,12 @@ import kodluyoruz.graduation.project.ui.view.BookCrudView;
 import kodluyoruz.graduation.project.ui.view.BookSearchView;
 import kodluyoruz.graduation.project.ui.view.WelcomePageView;
 
-@SuppressWarnings("serial")
 @SpringUI
 public class MainUI extends UI {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	@Autowired
 	private BookSearchView bookSearchView;
 	@Autowired
@@ -27,6 +30,8 @@ public class MainUI extends UI {
 	private WelcomePageView welcomePageView;
 	@Autowired
 	private SpringViewProvider springViewProvider;
+	@Autowired
+	private MainView mainView;
 
 	@Override
 	protected void init(VaadinRequest request) {
@@ -41,8 +46,9 @@ public class MainUI extends UI {
 		navigator.addView("search", bookSearchView);
 		// crud page navigates
 		navigator.addView("crud", bookCrudView);
+		navigator.addView("main", mainView);
 		bookCrudView.retrieveData();
-		navigator.navigateTo("welcome");
+		navigator.navigateTo("main");
 
 	}
 
