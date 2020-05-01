@@ -51,6 +51,8 @@ public class BookSearchView extends VerticalLayout implements GraduationView {
 
 		grid.addColumn(Book::getBookNote).setCaption("Kitap Notu");
 
+		grid.addColumn(Book::getBookCategory).setCaption("Kitap Kategorisi");
+
 		grid.addColumn(Book::getBookDescription).setCaption("Kitap Açıklaması");
 
 		grid.addColumn(Book::getBookPageCount).setCaption("Kitap Sayfa Sayısı");

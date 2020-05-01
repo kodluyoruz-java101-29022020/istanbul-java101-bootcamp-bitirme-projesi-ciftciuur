@@ -14,6 +14,8 @@ import com.vaadin.server.SerializablePredicate;
 import com.vaadin.shared.Registration;
 import com.vaadin.spring.annotation.SpringUI;
 import com.vaadin.ui.Button;
+import com.vaadin.ui.Button.ClickEvent;
+import com.vaadin.ui.Button.ClickListener;
 import com.vaadin.ui.Grid;
 import com.vaadin.ui.Grid.ItemClick;
 import com.vaadin.ui.Grid.SelectionMode;
@@ -21,8 +23,6 @@ import com.vaadin.ui.Label;
 import com.vaadin.ui.Notification;
 import com.vaadin.ui.VerticalLayout;
 import com.vaadin.ui.Window;
-import com.vaadin.ui.Button.ClickEvent;
-import com.vaadin.ui.Button.ClickListener;
 import com.vaadin.ui.components.grid.ItemClickListener;
 import com.vaadin.ui.themes.ValoTheme;
 
@@ -83,6 +83,8 @@ public class BookCrudView extends VerticalLayout implements GraduationView {
 		grid.addColumn(Book::getBookName).setCaption("Kitap Adı");
 
 		grid.addColumn(Book::getBookNote).setCaption("Kitap Notu");
+
+		grid.addColumn(Book::getBookCategory).setCaption("Kitap Kategorisi");
 
 		grid.addColumn(Book::getBookDescription).setCaption("Kitap Açıklaması");
 

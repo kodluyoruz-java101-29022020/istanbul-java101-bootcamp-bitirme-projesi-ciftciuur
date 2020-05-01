@@ -8,7 +8,6 @@ import com.vaadin.ui.HorizontalLayout;
 import com.vaadin.ui.Panel;
 import com.vaadin.ui.VerticalLayout;
 
-import kodluyoruz.graduation.project.controller.BookController;
 import kodluyoruz.graduation.project.ui.component.MenuItemComponent;
 import kodluyoruz.graduation.project.ui.component.MenuItemComponent.MenuItemClickListener;
 import kodluyoruz.graduation.project.ui.view.BookCrudView;
