@@ -12,18 +12,18 @@ import com.vaadin.spring.annotation.SpringUI;
 import com.vaadin.ui.Grid;
 import com.vaadin.ui.Grid.ItemClick;
 import com.vaadin.ui.Grid.SelectionMode;
-import com.vaadin.ui.Label;
 import com.vaadin.ui.VerticalLayout;
 import com.vaadin.ui.components.grid.ItemClickListener;
 
 import kodluyoruz.graduation.project.dto.BookSearchDto;
+import kodluyoruz.graduation.project.model.Book;
 
 @SuppressWarnings("serial")
 @SpringUI
 public class BookSearchView extends VerticalLayout implements GraduationView {
 
 	protected Registration gridItemClickListener;
-	protected Grid<BookSearchDto> grid;
+	protected Grid<Book> grid;
 
 	public BookSearchView() {
 		init();
@@ -35,9 +35,7 @@ public class BookSearchView extends VerticalLayout implements GraduationView {
 		setMargin(false);
 		setSpacing(true);
 
-		addComponent(new Label("Kitap Arama Sayfası"));
-
-		grid = new Grid<BookSearchDto>();
+		grid = new Grid<Book>();
 		grid.setSizeFull();
 		grid.setSelectionMode(SelectionMode.SINGLE);
 		grid.setColumnReorderingAllowed(true);
@@ -47,19 +45,25 @@ public class BookSearchView extends VerticalLayout implements GraduationView {
 
 		/* set grid columns */
 
-		grid.addColumn(BookSearchDto::getBookName).setCaption("Kitap Adı");
-		grid.addColumn(BookSearchDto::getBookPageCount).setCaption("Kitap Sayfa Sayısı");
-		grid.addColumn(BookSearchDto::getIsbn).setCaption("Kitap ISBN");
-		// TODO : kitap baskı detayı acılıcak poup-up'ta gösterilebilir
-		// grid.addColumn(BookSearchDto::getPrinting).setCaption("Kitap Baskı");
-		grid.addColumn(BookSearchDto::getBookCategory).setCaption("Kitap Kategorisi");
-		// TODO : kitap yazar detayı açılan poup-up'ta gösterilebilir
+		grid.addColumn(Book::getBookId).setCaption("Kitap ID");
 
-		gridItemClickListener = grid.addItemClickListener(new ItemClickListener<BookSearchDto>() {
+		grid.addColumn(Book::getBookName).setCaption("Kitap Adı");
+
+		grid.addColumn(Book::getBookNote).setCaption("Kitap Notu");
+
+		grid.addColumn(Book::getBookDescription).setCaption("Kitap Açıklaması");
+
+		grid.addColumn(Book::getBookPageCount).setCaption("Kitap Sayfa Sayısı");
+
+		grid.addColumn(Book::getPublisher).setCaption("Kitap Yayımevi");
+
+		grid.addColumn(Book::getPublishingYear).setCaption("Kitap Yayım Yılı");
+
+		gridItemClickListener = grid.addItemClickListener(new ItemClickListener<Book>() {
 			@Override
-			public void itemClick(ItemClick<BookSearchDto> event) {
+			public void itemClick(ItemClick<Book> event) {
 				if (event.getMouseEventDetails().isDoubleClick()) {
-					/* open task form */
+					/* open book form */
 					openForm(event.getItem());
 				}
 			}
@@ -75,17 +79,16 @@ public class BookSearchView extends VerticalLayout implements GraduationView {
 		 * 
 		 * örneğin -> localhost:7070/api/bookSearch/all
 		 */
-		List<BookSearchDto> dataList = new ArrayList<>();
+		List<Book> dataList = new ArrayList<>();
 
-		ListDataProvider<BookSearchDto> dataProvider = new ListDataProvider<BookSearchDto>(
-				(Collection<BookSearchDto>) dataList);
-		ConfigurableFilterDataProvider<BookSearchDto, Void, SerializablePredicate<BookSearchDto>> filterDataProvider = dataProvider
+		ListDataProvider<Book> dataProvider = new ListDataProvider<Book>((Collection<Book>) dataList);
+		ConfigurableFilterDataProvider<Book, Void, SerializablePredicate<Book>> filterDataProvider = dataProvider
 				.withConfigurableFilter();
 		grid.setDataProvider(filterDataProvider);
 		grid.getDataProvider().refreshAll();
 	}
 
-	private void openForm(BookSearchDto bookSearchDto) {
+	private void openForm(Book bookSearchDto) {
 		// TODO : added poup-up for book detail
 	}
 
