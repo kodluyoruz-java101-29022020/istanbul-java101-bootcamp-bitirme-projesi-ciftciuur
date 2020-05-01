@@ -10,13 +10,11 @@ import kodluyoruz.graduation.project.model.Book;
 @Service
 public interface BookService {
 
-	public void saveBook(Book book);
+	public String save(Book book);
 
-	public void hardDeleteBook(Long bookId);
+	public String hardDeleteBook(Long bookId);
 
 	public void softDeleteBook(Long bookId);
-
-	public void updateBook(Long bookId, Book book);
 
 	public List<Book> searchBookCategory(BookCategory category);
 
@@ -27,5 +25,7 @@ public interface BookService {
 	public List<BookCategory> getAllBookCategories();
 
 	public Book findByBookId(Long bookId);
+
+	public List<Book> findByBookCategory(BookCategory bookCategory);
 
 }

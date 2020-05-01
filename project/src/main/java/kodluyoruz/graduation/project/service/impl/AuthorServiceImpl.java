@@ -61,5 +61,11 @@ public class AuthorServiceImpl implements AuthorService {
 
 	}
 
+	@Override
+	public Author getAuthorDetail() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 	
 }

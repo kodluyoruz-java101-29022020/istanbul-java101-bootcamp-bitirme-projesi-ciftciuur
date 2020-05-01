@@ -2,9 +2,12 @@ package kodluyoruz.graduation.project.service.impl;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -21,29 +24,35 @@ public class BookServiceImpl implements BookService {
 
 	@Override
 	@Transactional
-	public void saveBook(Book book) {
+	public String save(Book book) {
 		if (book != null) {
-			bookRepository.save(book);
+			if (book.getAuthor().size() > 0) {
+				bookRepository.save(book);
+				return "Güncelle işlemi başarılı";
+			} else {
+				return "Kitabın en az bir adet yazarı olmak zorunda";
+			}
+		} else {
+			return "Kitap objesi boş olamaz";
 		}
-
 	}
 
 	@Override
 	@Transactional
-	public void hardDeleteBook(Long bookId) {
+	public String hardDeleteBook(Long bookId) {
 		if (bookId != null) {
-			bookRepository.deleteById(bookId);
-		}
-
-	}
-
-	@Override
-	@Transactional
-	public void updateBook(Long bookId, Book book) {
-		if (bookId != null) {
-			Book tempBook = bookRepository.findByBookId(bookId);
-			tempBook = book;
-			bookRepository.save(tempBook);
+			Book book = bookRepository.findByBookId(bookId);
+			if (book != null) {
+				bookRepository.deleteById(bookId);
+				return "Kayıt silindi";
+			} else {
+				StringBuilder stringBuilder = new StringBuilder();
+				stringBuilder.append(bookId);
+				stringBuilder.append(" no'lu kayıt veri tabanında mevcut değil");
+				return stringBuilder.toString();
+			}
+		} else {
+			return "Kitap ID'si boş olamaz";
 		}
 
 	}
@@ -91,5 +100,14 @@ public class BookServiceImpl implements BookService {
 	@Override
 	public Book findByBookId(Long bookId) {
 		return bookRepository.findByBookId(bookId);
+	}
+
+	@Override
+	public List<Book> findByBookCategory(BookCategory bookCategory) {
+		if (bookCategory != null) {
+			return bookRepository.findByBookCategory(bookCategory);
+		} else {
+			return new ArrayList<Book>();
+		}
 	}
 }

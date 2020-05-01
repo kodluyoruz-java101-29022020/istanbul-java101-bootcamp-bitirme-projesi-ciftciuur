@@ -8,6 +8,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -51,7 +52,7 @@ public class Book {
 	 * TODO : book_author adında bir tablo iki tablo arasındakı entegrasyonu
 	 * sağlıyacak
 	 */
-	@ManyToMany(cascade = CascadeType.PERSIST)
+	@ManyToMany(cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
 	@JoinTable(name = "book_author", joinColumns = {
 			@JoinColumn(name = "book_id", referencedColumnName = "book_id") }, inverseJoinColumns = {
 					@JoinColumn(name = "auth_id", referencedColumnName = "author_id") })

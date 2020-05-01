@@ -1,0 +1,22 @@
+Book - Author Entity'i olusturulucak. +
+Book -> Kaydet - Sil - Güncelle - Ara (önyüz / servis(+))
+Book -> Crud işlemler için önyüz 
+Book -> Kaydet-Sil-Günceller Rest Api gerekli = +
+Book -> swagger api list
+BookService katmanı transactional olucak = +
+
+( SOLID-OOP ) -> Code review
+
+
+---Test---
+Kitap kaydetme - Silme - Güncelleme  Rest <-> Repository arasında komple integration test
+Not: Service katmanı mock test olucak
+(02-05-2020 -> 19 nisan günü tüm ders videoları ızlenıcek)
+
+
+
+
+
+----
+Yazar Ekle-Sil-Güncelle
+

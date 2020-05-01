@@ -28,7 +28,7 @@ public class SimpleRestApiController {
 	 * bu fonksiyon çağrılan post istegini karsılar ve yenı kayıt ekler static
 	 * olarak
 	 */
-	@RequestMapping(value = "/api/crud/save", method = RequestMethod.POST)
+	@RequestMapping(value = "/api/v2/crud/save", method = RequestMethod.POST)
 	public void saveBook() {
 		Book tempBook = new Book();
 		tempBook.setBookName("java kitabı");
@@ -41,15 +41,15 @@ public class SimpleRestApiController {
 		tempAuthors2.setAuthorName("test yazar adı 2");
 		authorService.saveAuthor(tempAuthors);
 		tempBook.setAuthor(new HashSet<>(Arrays.asList(tempAuthors, tempAuthors2)));
-		bookService.saveBook(tempBook);
+		bookService.save(tempBook);
 		System.err.println("kayıt yapıldı");
 	}
 
-	@RequestMapping(value = "/api/crud/book/save", method = RequestMethod.POST)
+	@RequestMapping(value = "/api/v2/crud/book/save", method = RequestMethod.POST)
 	public void saveBookDetail(Book book, Set<Author> author) {
 
 		book.setAuthor(author);
-		bookService.saveBook(book);
+		bookService.save(book);
 		System.err.println("kayıt yapıldı");
 	}
 
@@ -57,7 +57,7 @@ public class SimpleRestApiController {
 	 * bu fonksiyon dışarıdan gelen kıtapid'sini veritabanında sorgular ve kaydı
 	 * geri döner
 	 */
-	@RequestMapping(value = "/api/get/book", method = RequestMethod.GET)
+	@RequestMapping(value = "/api/v2/get/book", method = RequestMethod.GET)
 	public Book getBookById(@RequestParam Long id) {
 
 		Book book = bookService.findByBookId(id);
@@ -72,7 +72,7 @@ public class SimpleRestApiController {
 	 * bu fonksiyon dışarıdan parametre olarak verılen bookid'sini veri tabanından
 	 * sıler silinen tablolar(book tablosu ve book_author tablosu)
 	 */
-	@RequestMapping(value = "/api/delete/book", method = RequestMethod.DELETE)
+	@RequestMapping(value = "/api/v2/delete/book", method = RequestMethod.DELETE)
 	public String deleteBook(@RequestParam Long id) {
 		bookService.hardDeleteBook(id);
 		return "silme başarılı";

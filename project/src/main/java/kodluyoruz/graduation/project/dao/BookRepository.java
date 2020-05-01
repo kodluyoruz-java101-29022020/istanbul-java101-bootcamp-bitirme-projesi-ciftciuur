@@ -23,7 +23,8 @@ public interface BookRepository extends CrudRepository<Book, Long> {
 	@Query("SELECT book FROM Book book WHERE book.bookCategory=:bookCategory AND book.deleted=false or book.deleted=null")
 	public List<Book> findByBookCategory(@Param("bookCategory") BookCategory bookCategory);
 
-	@Query("SELECT book FROM Book book WHERE book.deleted=false AND  book.bookName LIKE %:bookName% ")
+	// TODO like sorgusu calısmıyor !!!
+	@Query("SELECT book FROM Book book WHERE  book.bookName LIKE '%:bookName%' AND book.deleted=false or book.deleted=null  ")
 	public List<Book> findByBookName(@Param("bookName") String bookName);
 
 	@Query("SELECT book FROM Book book WHERE book.deleted=false ORDER BY book.publishingYear ASC")
