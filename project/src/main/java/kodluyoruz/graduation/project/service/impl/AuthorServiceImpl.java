@@ -67,5 +67,13 @@ public class AuthorServiceImpl implements AuthorService {
 		return null;
 	}
 
-	
+	@Override
+	public Author findByAuthorId(Long authId) {
+		if (authId != null) {
+			return authorRepository.findByAuthorId(authId);
+		} else {
+			return null;
+		}
+	}
+
 }

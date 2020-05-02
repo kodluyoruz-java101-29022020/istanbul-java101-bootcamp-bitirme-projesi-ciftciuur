@@ -3,7 +3,6 @@ package kodluyoruz.graduation.project.ui.view;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.Collection;
-import java.util.HashSet;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +16,6 @@ import com.vaadin.spring.annotation.SpringUI;
 import com.vaadin.ui.Button;
 import com.vaadin.ui.Button.ClickEvent;
 import com.vaadin.ui.Button.ClickListener;
-import com.vaadin.ui.ComboBox;
 import com.vaadin.ui.Grid;
 import com.vaadin.ui.Grid.ItemClick;
 import com.vaadin.ui.Grid.SelectionMode;
@@ -135,7 +133,9 @@ public class BookCrudView extends VerticalLayout implements GraduationView {
 
 			form.getTxtBookName().setValue(book.getBookName());
 
-			form.getCmbBookAuthor().setItems(book.getAuthor());
+			form.getCmbBookAuthor().setItems(authorService.getAllUnDeletedAuthors());
+			form.getCmbBookAuthor().setSelectedItem(authorService.findByAuthorId(book.getAuthor().getAuthorId()));
+			form.getCmbBookAuthor().setItemCaptionGenerator(Author::getAuthorName);
 
 			form.getTxtBookNote().setValue(book.getBookNote());
 
@@ -145,7 +145,9 @@ public class BookCrudView extends VerticalLayout implements GraduationView {
 
 			form.getTxtBookPublisher().setValue(book.getPublisher());
 
-			form.getCmbBookCategory().setValue(book.getBookCategory());
+			form.getCmbBookCategory().setItems(BookCategory.values());
+			form.getCmbBookCategory().setSelectedItem(book.getBookCategory());
+			form.getCmbBookCategory().setItemCaptionGenerator(BookCategory::getCategoryName);
 
 			form.getDfBookPublishingDate()
 					.setValue(book.getPublishingYear().toInstant().atZone(ZoneId.systemDefault()).toLocalDate());
@@ -155,7 +157,7 @@ public class BookCrudView extends VerticalLayout implements GraduationView {
 				@Override
 				public void buttonClick(ClickEvent event) {
 					Book tempBook = new Book();
-					// tempBook.setAuthor(form.getCmbBookAuthor().getValue());
+					tempBook.setAuthor(form.getCmbBookAuthor().getValue());
 					tempBook.setBookCategory(form.getCmbBookCategory().getValue());
 					tempBook.setBookDescription(form.getTxtBookDescription().getValue());
 					tempBook.setBookName(form.getTxtBookName().getValue());
@@ -188,7 +190,7 @@ public class BookCrudView extends VerticalLayout implements GraduationView {
 				@Override
 				public void buttonClick(ClickEvent event) {
 					Book tempBook = new Book();
-					tempBook.getAuthor().add(form.getCmbBookAuthor().getValue());
+					tempBook.setAuthor(form.getCmbBookAuthor().getValue());
 					tempBook.setBookCategory(form.getCmbBookCategory().getValue());
 					tempBook.setBookDescription(form.getTxtBookDescription().getValue());
 					tempBook.setBookName(form.getTxtBookName().getValue());

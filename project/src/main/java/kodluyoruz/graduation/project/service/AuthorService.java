@@ -18,8 +18,9 @@ public interface AuthorService {
 	public void updateAuthor(Long authorId, Author author);
 
 	public List<Author> getAllUnDeletedAuthors();
-	
+
 	public Author getAuthorDetail();
 
-	
+	public Author findByAuthorId(Long authId);
+
 }

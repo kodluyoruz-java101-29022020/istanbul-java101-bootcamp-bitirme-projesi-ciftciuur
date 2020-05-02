@@ -1,10 +1,7 @@
 package kodluyoruz.graduation.project.model;
 
 import java.util.Date;
-import java.util.HashSet;
-import java.util.Set;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -14,8 +11,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import kodluyoruz.graduation.project.enums.BookCategory;
@@ -47,27 +43,19 @@ public class Book {
 	// this column use Soft delete -> true = deleted - false = undeleted
 	private Boolean deleted;
 
-	/*
-	 * TODO : Book(m) <--> Author(n)
-	 * 
-	 * TODO : book_author adında bir tablo iki tablo arasındakı entegrasyonu
-	 * sağlıyacak
-	 */
-	@ManyToMany(cascade = CascadeType.MERGE, fetch = FetchType.LAZY)
-	@JoinTable(name = "book_author", joinColumns = {
-			@JoinColumn(name = "book_id", referencedColumnName = "book_id") }, inverseJoinColumns = {
-					@JoinColumn(name = "auth_id", referencedColumnName = "author_id") })
-	private Set<Author> author = new HashSet<>();
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "author_id", nullable = false)
+	private Author author;
 
 	public void setBookId(Long bookId) {
 		this.bookId = bookId;
 	}
 
-	public Set<Author> getAuthor() {
+	public Author getAuthor() {
 		return author;
 	}
 
-	public void setAuthor(Set<Author> author) {
+	public void setAuthor(Author author) {
 		this.author = author;
 	}
 

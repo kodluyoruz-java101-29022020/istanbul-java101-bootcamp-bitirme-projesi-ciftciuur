@@ -1,9 +1,13 @@
 package kodluyoruz.graduation.project.model;
 
-import java.util.HashSet;
-import java.util.Set;
-
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 
 @Entity
 @Table(name = "author")
@@ -23,16 +27,8 @@ public class Author {
 	/*
 	 * TODO: author mapped'i aslında booktaki author
 	 */
-	@ManyToMany(mappedBy = "author")
-	private Set<Book> book = new HashSet<>();
-
-	public Set<Book> getBook() {
-		return book;
-	}
-
-	public void setBook(Set<Book> book) {
-		this.book = book;
-	}
+	@ManyToOne(fetch = FetchType.LAZY)
+	private Book book;
 
 	public void setAuthorId(Long authorId) {
 		this.authorId = authorId;

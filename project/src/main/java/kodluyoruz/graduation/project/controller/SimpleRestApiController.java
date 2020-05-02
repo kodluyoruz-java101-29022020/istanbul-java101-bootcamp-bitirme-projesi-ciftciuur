@@ -40,7 +40,6 @@ public class SimpleRestApiController {
 		Author tempAuthors2 = new Author();
 		tempAuthors2.setAuthorName("test yazar adı 2");
 		authorService.saveAuthor(tempAuthors);
-		tempBook.getAuthor().add(tempAuthors2);
 		bookService.save(tempBook);
 		System.err.println("kayıt yapıldı");
 	}
@@ -48,7 +47,6 @@ public class SimpleRestApiController {
 	@RequestMapping(value = "/api/v2/crud/book/save", method = RequestMethod.POST)
 	public void saveBookDetail(Book book, Author author) {
 
-		book.getAuthor().add(author);
 		bookService.save(book);
 		System.err.println("kayıt yapıldı");
 	}
