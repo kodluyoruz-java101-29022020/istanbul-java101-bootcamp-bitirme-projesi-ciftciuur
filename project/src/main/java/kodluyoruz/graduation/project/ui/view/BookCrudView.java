@@ -3,6 +3,7 @@ package kodluyoruz.graduation.project.ui.view;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.Collection;
+import java.util.HashSet;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -163,7 +164,7 @@ public class BookCrudView extends VerticalLayout implements GraduationView {
 					tempBook.setPublisher(form.getTxtBookPublisher().getValue());
 					tempBook.setPublishingYear(java.util.Date.from(form.getDfBookPublishingDate().getValue()
 							.atStartOfDay().atZone(ZoneId.systemDefault()).toInstant()));
-					tempBook.setDeleted(true);
+					tempBook.setDeleted(false);
 					Notification.show(update(tempBook));
 				}
 			});
@@ -187,7 +188,7 @@ public class BookCrudView extends VerticalLayout implements GraduationView {
 				@Override
 				public void buttonClick(ClickEvent event) {
 					Book tempBook = new Book();
-					// tempBook.setAuthor(form.getCmbBookAuthor().getValue());
+					tempBook.getAuthor().add(form.getCmbBookAuthor().getValue());
 					tempBook.setBookCategory(form.getCmbBookCategory().getValue());
 					tempBook.setBookDescription(form.getTxtBookDescription().getValue());
 					tempBook.setBookName(form.getTxtBookName().getValue());
@@ -200,7 +201,6 @@ public class BookCrudView extends VerticalLayout implements GraduationView {
 					Notification.show(save(tempBook));
 				}
 			});
-
 			winForm.setContent(form);
 		}
 
@@ -211,7 +211,6 @@ public class BookCrudView extends VerticalLayout implements GraduationView {
 
 	private String save(Book book) {
 		if (book != null) {
-			// authorService.saveAuthor(book.getAuthor());
 			bookService.save(book);
 			return "İşlem başarılı";
 		} else {

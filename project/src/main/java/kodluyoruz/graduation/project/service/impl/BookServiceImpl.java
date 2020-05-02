@@ -2,18 +2,16 @@ package kodluyoruz.graduation.project.service.impl;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.HashSet;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import kodluyoruz.graduation.project.annotation.RuntimeAspect;
 import kodluyoruz.graduation.project.dao.BookRepository;
 import kodluyoruz.graduation.project.enums.BookCategory;
+import kodluyoruz.graduation.project.model.Author;
 import kodluyoruz.graduation.project.model.Book;
 import kodluyoruz.graduation.project.service.BookService;
 
@@ -26,12 +24,11 @@ public class BookServiceImpl implements BookService {
 	@Transactional
 	public String save(Book book) {
 		if (book != null) {
-			if (book.getAuthor().size() > 0) {
-				bookRepository.save(book);
-				return "Güncelle işlemi başarılı";
-			} else {
-				return "Kitabın en az bir adet yazarı olmak zorunda";
-			}
+			Author tempAuthor = new Author();
+			tempAuthor.getBook().add(book);
+			bookRepository.save(book);
+			return "Güncelle işlemi başarılı";
+
 		} else {
 			return "Kitap objesi boş olamaz";
 		}

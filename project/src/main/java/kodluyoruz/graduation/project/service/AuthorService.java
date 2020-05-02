@@ -5,7 +5,6 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 
 import kodluyoruz.graduation.project.model.Author;
-import kodluyoruz.graduation.project.model.Book;
 
 @Service
 public interface AuthorService {

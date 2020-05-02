@@ -1,6 +1,7 @@
 package kodluyoruz.graduation.project.model;
 
 import java.util.Date;
+import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -52,11 +53,11 @@ public class Book {
 	 * TODO : book_author adında bir tablo iki tablo arasındakı entegrasyonu
 	 * sağlıyacak
 	 */
-	@ManyToMany(cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
+	@ManyToMany(cascade = CascadeType.MERGE, fetch = FetchType.LAZY)
 	@JoinTable(name = "book_author", joinColumns = {
 			@JoinColumn(name = "book_id", referencedColumnName = "book_id") }, inverseJoinColumns = {
 					@JoinColumn(name = "auth_id", referencedColumnName = "author_id") })
-	private Set<Author> author;
+	private Set<Author> author = new HashSet<>();
 
 	public void setBookId(Long bookId) {
 		this.bookId = bookId;

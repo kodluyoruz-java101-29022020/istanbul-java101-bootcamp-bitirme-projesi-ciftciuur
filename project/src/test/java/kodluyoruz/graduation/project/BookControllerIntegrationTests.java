@@ -53,7 +53,6 @@ public class BookControllerIntegrationTests {
 		author_2.setAuthorSurName("Author 2 sur name");
 		authors.add(author_1);
 		authors.add(author_2);
-		book.setAuthor(new HashSet<>(authors));
 		authorRepository.save(author_1);
 		authorRepository.save(author_2);
 		bookRepository.save(book);

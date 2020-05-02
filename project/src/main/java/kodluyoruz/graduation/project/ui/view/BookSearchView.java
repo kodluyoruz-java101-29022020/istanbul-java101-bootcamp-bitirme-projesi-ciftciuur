@@ -1,22 +1,30 @@
 package kodluyoruz.graduation.project.ui.view;
 
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
 import com.vaadin.data.provider.ConfigurableFilterDataProvider;
 import com.vaadin.data.provider.ListDataProvider;
+import com.vaadin.icons.VaadinIcons;
 import com.vaadin.server.SerializablePredicate;
 import com.vaadin.shared.Registration;
 import com.vaadin.spring.annotation.SpringUI;
+import com.vaadin.ui.Button;
+import com.vaadin.ui.ComboBox;
 import com.vaadin.ui.Grid;
 import com.vaadin.ui.Grid.ItemClick;
 import com.vaadin.ui.Grid.SelectionMode;
+import com.vaadin.ui.Label;
+import com.vaadin.ui.TextField;
 import com.vaadin.ui.VerticalLayout;
 import com.vaadin.ui.components.grid.ItemClickListener;
+import com.vaadin.ui.themes.ValoTheme;
 
-import kodluyoruz.graduation.project.dto.BookSearchDto;
+import kodluyoruz.graduation.project.enums.BookCategory;
 import kodluyoruz.graduation.project.model.Book;
+import kodluyoruz.graduation.project.service.BookService;
 
 @SuppressWarnings("serial")
 @SpringUI
@@ -24,6 +32,9 @@ public class BookSearchView extends VerticalLayout implements GraduationView {
 
 	protected Registration gridItemClickListener;
 	protected Grid<Book> grid;
+
+	@Autowired
+	private BookService bookService;
 
 	public BookSearchView() {
 		init();
@@ -34,6 +45,24 @@ public class BookSearchView extends VerticalLayout implements GraduationView {
 		setSizeFull();
 		setMargin(false);
 		setSpacing(true);
+
+		Button searchButton = new Button("Ara");
+		Label lblBookName = new Label("Kitap adı ");
+		TextField txtBookName = new TextField();
+		Label lblBookCategory = new Label("Kitap Kategorisi ");
+		ComboBox<BookCategory> cmbBookCategory = new ComboBox<BookCategory>();
+		cmbBookCategory.setItems(BookCategory.values());
+		cmbBookCategory.setItemCaptionGenerator(BookCategory::getCategoryName);
+		searchButton.setWidth("120px");
+		searchButton.setDisableOnClick(false);
+		searchButton.setIcon(VaadinIcons.SEARCH);
+		searchButton.addStyleName(ValoTheme.BUTTON_FRIENDLY);
+		searchButton.addStyleName(ValoTheme.BUTTON_SMALL);
+		addComponent(lblBookName);
+		addComponent(txtBookName);
+		addComponent(lblBookCategory);
+		addComponent(cmbBookCategory);
+		addComponent(searchButton);
 
 		grid = new Grid<Book>();
 		grid.setSizeFull();
@@ -75,14 +104,10 @@ public class BookSearchView extends VerticalLayout implements GraduationView {
 
 	public void retrieveData() {
 
-		/*
-		 * TODO : bu fonksiyonda aktif kitapların listelenmesi sağlayacak api
-		 * çağırılıacak
-		 * 
-		 * örneğin -> localhost:7070/api/bookSearch/all
-		 */
-		List<Book> dataList = new ArrayList<>();
-
+		List<Book> dataList = bookService.getAllUnDeletedBooks();
+		if (dataList == null) {
+			return;
+		}
 		ListDataProvider<Book> dataProvider = new ListDataProvider<Book>((Collection<Book>) dataList);
 		ConfigurableFilterDataProvider<Book, Void, SerializablePredicate<Book>> filterDataProvider = dataProvider
 				.withConfigurableFilter();
