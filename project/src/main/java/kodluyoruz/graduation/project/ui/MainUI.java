@@ -12,22 +12,13 @@ import com.vaadin.spring.navigator.SpringViewProvider;
 import com.vaadin.spring.server.SpringVaadinServlet;
 import com.vaadin.ui.UI;
 
-import kodluyoruz.graduation.project.ui.view.BookCrudView;
-import kodluyoruz.graduation.project.ui.view.BookSearchView;
-import kodluyoruz.graduation.project.ui.view.WelcomePageView;
-
 @SpringUI
 public class MainUI extends UI {
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	@Autowired
-	private BookSearchView bookSearchView;
-	@Autowired
-	private BookCrudView bookCrudView;
-	@Autowired
-	private WelcomePageView welcomePageView;
+
 	@Autowired
 	private SpringViewProvider springViewProvider;
 	@Autowired
@@ -39,13 +30,6 @@ public class MainUI extends UI {
 		Navigator navigator = new Navigator(this, this);
 		navigator.addProvider(springViewProvider);
 		// Adding all views for navigation
-
-		// welcome page navigate
-		navigator.addView("welcome", welcomePageView);
-		// search page navigate
-		navigator.addView("search", bookSearchView);
-		// crud page navigates
-		navigator.addView("crud", bookCrudView);
 		navigator.addView("main", mainView);
 		navigator.navigateTo("main");
 

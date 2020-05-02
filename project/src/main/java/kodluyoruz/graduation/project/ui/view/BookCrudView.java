@@ -152,11 +152,14 @@ public class BookCrudView extends VerticalLayout implements GraduationView {
 			form.getDfBookPublishingDate()
 					.setValue(book.getPublishingYear().toInstant().atZone(ZoneId.systemDefault()).toLocalDate());
 
+			form.getBtnSave().setEnabled(false);
+
 			form.getBtnUpdate().addClickListener(new ClickListener() {
 
 				@Override
 				public void buttonClick(ClickEvent event) {
 					Book tempBook = new Book();
+					tempBook.setBookId(Long.parseLong(form.getTxtBookId().getValue()));
 					tempBook.setAuthor(form.getCmbBookAuthor().getValue());
 					tempBook.setBookCategory(form.getCmbBookCategory().getValue());
 					tempBook.setBookDescription(form.getTxtBookDescription().getValue());
@@ -221,7 +224,12 @@ public class BookCrudView extends VerticalLayout implements GraduationView {
 	}
 
 	private String update(Book book) {
-		return null;
+		if (book != null) {
+			bookService.save(book);
+			return "Güncelleme başarılı";
+		} else {
+			return "Güncelleme yaparken hata oluştu";
+		}
 	}
 
 	private String delete(Long bookId) {

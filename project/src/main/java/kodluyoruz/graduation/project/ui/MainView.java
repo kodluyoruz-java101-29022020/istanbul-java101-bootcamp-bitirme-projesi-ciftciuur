@@ -2,11 +2,13 @@ package kodluyoruz.graduation.project.ui;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
+import com.vaadin.icons.VaadinIcons;
 import com.vaadin.navigator.View;
 import com.vaadin.spring.annotation.SpringUI;
 import com.vaadin.ui.HorizontalLayout;
 import com.vaadin.ui.Panel;
 import com.vaadin.ui.VerticalLayout;
+import com.vaadin.ui.themes.ValoTheme;
 
 import kodluyoruz.graduation.project.ui.component.MenuItemComponent;
 import kodluyoruz.graduation.project.ui.component.MenuItemComponent.MenuItemClickListener;
@@ -52,25 +54,21 @@ public class MainView extends HorizontalLayout implements View {
 					vlMain.removeComponent(activeView);
 
 				}
-
 				vlMain.addComponent(bookCrudView);
 				activeView = bookCrudView;
 				bookCrudView.retrieveData();
 
 			}
 		});
-
 		MenuItemComponent menuItem_2 = new MenuItemComponent("Kitap Ara", new MenuItemClickListener() {
 			@Override
 			public void clicked() {
 				if (activeView != null) {
 					vlMain.removeComponent(activeView);
 				}
-
 				vlMain.addComponent(bookSearchView);
 				activeView = bookSearchView;
 				bookSearchView.retrieveData();
-
 			}
 		});
 		MenuItemComponent menuItem_3 = new MenuItemComponent("Api Listesi", new MenuItemClickListener() {
@@ -80,7 +78,6 @@ public class MainView extends HorizontalLayout implements View {
 
 			}
 		});
-
 		vlMenu.addComponent(menuItem_1);
 		vlMenu.addComponent(menuItem_2);
 		vlMenu.addComponent(menuItem_3);
