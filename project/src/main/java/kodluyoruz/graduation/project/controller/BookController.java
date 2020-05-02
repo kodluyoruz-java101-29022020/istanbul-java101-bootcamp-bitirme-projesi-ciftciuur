@@ -1,6 +1,7 @@
 package kodluyoruz.graduation.project.controller;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -33,13 +34,13 @@ public class BookController {
 	private BookService bookService;
 
 	@RequestMapping(value = "/api/book/save", method = RequestMethod.POST)
-	public ResponseEntity<String> saveBook(@RequestBody Book book) {
-		return new ResponseEntity<String>(bookService.save(book), HttpStatus.OK);
+	public ResponseEntity<Book> saveBook(@RequestBody Book book) {
+		return new ResponseEntity<Book>(bookService.save(book), HttpStatus.OK);
 	}
 
 	@RequestMapping(value = "/api/book/update", method = RequestMethod.PUT)
-	public ResponseEntity<String> updateBook(@RequestBody Book book) {
-		return new ResponseEntity<String>(bookService.save(book), HttpStatus.OK);
+	public ResponseEntity<Book> updateBook(@RequestBody Book book) {
+		return new ResponseEntity<Book>(bookService.save(book), HttpStatus.OK);
 	}
 
 	@RequestMapping(value = "/api/book/delete", method = RequestMethod.DELETE)
@@ -50,6 +51,11 @@ public class BookController {
 	@RequestMapping(value = "/api/book/search", method = RequestMethod.GET)
 	public ResponseEntity<List<Book>> searchBookByName(@RequestParam String bookName) {
 		return new ResponseEntity<List<Book>>(bookService.findByBookName(bookName), HttpStatus.OK);
+	}
+
+	@RequestMapping(value = "/api/book/search/id", method = RequestMethod.GET)
+	public Optional<Book> searchBookById(@RequestParam Long bookId) {
+		return bookService.findByBookId(bookId);
 	}
 
 	@RequestMapping(value = "/api/book/search/category", method = RequestMethod.GET)

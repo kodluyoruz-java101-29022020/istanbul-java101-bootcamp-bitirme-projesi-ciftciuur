@@ -1,15 +1,20 @@
 package kodluyoruz.graduation.project.model;
 
+import java.util.Set;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
 @Table(name = "author")
+@JsonIgnoreProperties({ "hibernateLazyInitializer", "handler" })
 public class Author {
 
 	@Id
@@ -24,8 +29,8 @@ public class Author {
 	/*
 	 * TODO: author mapped'i aslında booktaki author
 	 */
-	@ManyToOne(fetch = FetchType.LAZY)
-	private Book book;
+	@OneToMany(mappedBy = "author", cascade = CascadeType.ALL)
+	private Set<Book> book;
 
 	public void setAuthorId(Long authorId) {
 		this.authorId = authorId;

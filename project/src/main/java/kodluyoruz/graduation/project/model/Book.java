@@ -14,10 +14,13 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import kodluyoruz.graduation.project.enums.BookCategory;
 
 @Entity
 @Table(name = "book")
+@JsonIgnoreProperties({ "hibernateLazyInitializer", "handler" })
 public class Book {
 
 	@Id

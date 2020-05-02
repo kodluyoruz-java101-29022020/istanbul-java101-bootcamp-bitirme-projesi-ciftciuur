@@ -21,7 +21,7 @@ public interface BookRepository extends CrudRepository<Book, Long> {
 	public List<Book> findByBookCategory(@Param("bookCategory") BookCategory bookCategory);
 
 	// TODO like sorgusu calısmıyor !!!
-	@Query("SELECT book FROM Book book WHERE  book.bookName LIKE '%:bookName%'")
+	@Query("SELECT book FROM Book book WHERE  book.bookName LIKE CONCAT('%',:bookName,'%')")
 	public List<Book> findByBookName(@Param("bookName") String bookName);
 
 	@Query("SELECT book FROM Book book  ORDER BY book.publishingYear ASC")

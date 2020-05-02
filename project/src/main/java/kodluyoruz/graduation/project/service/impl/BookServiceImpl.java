@@ -3,6 +3,7 @@ package kodluyoruz.graduation.project.service.impl;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -21,13 +22,12 @@ public class BookServiceImpl implements BookService {
 
 	@Override
 	@Transactional
-	public String save(Book book) {
+	public Book save(Book book) {
 		if (book != null) {
-			bookRepository.save(book);
-			return "Güncelle işlemi başarılı";
+			return bookRepository.save(book);
 
 		} else {
-			return "Kitap objesi boş olamaz";
+			return null;
 		}
 	}
 
@@ -77,8 +77,8 @@ public class BookServiceImpl implements BookService {
 	}
 
 	@Override
-	public Book findByBookId(Long bookId) {
-		return bookRepository.findByBookId(bookId);
+	public Optional<Book> findByBookId(Long bookId) {
+		return bookRepository.findById(bookId);
 	}
 
 	@Override
