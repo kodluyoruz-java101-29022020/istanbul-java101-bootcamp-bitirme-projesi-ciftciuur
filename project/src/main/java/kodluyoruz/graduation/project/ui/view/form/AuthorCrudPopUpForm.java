@@ -1,13 +1,12 @@
 package kodluyoruz.graduation.project.ui.view.form;
 
 import com.vaadin.ui.Button;
-import com.vaadin.ui.ComboBox;
-import com.vaadin.ui.DateField;
 import com.vaadin.ui.TextField;
 
-import kodluyoruz.graduation.project.ui.view.design.AuthorCrudPoupUpDesign;
+import kodluyoruz.graduation.project.ui.view.design.AuthorCrudPopUpDesign;
 
-public class AuthorCrudPopUpForm extends AuthorCrudPoupUpDesign {
+@SuppressWarnings("serial")
+public class AuthorCrudPopUpForm extends AuthorCrudPopUpDesign {
 
 	public AuthorCrudPopUpForm() {
 		super();

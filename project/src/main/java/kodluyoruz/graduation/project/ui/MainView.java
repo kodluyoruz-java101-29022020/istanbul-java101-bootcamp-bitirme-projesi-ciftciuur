@@ -12,6 +12,7 @@ import com.vaadin.ui.themes.ValoTheme;
 
 import kodluyoruz.graduation.project.ui.component.MenuItemComponent;
 import kodluyoruz.graduation.project.ui.component.MenuItemComponent.MenuItemClickListener;
+import kodluyoruz.graduation.project.ui.view.AuthorBookCrudView;
 import kodluyoruz.graduation.project.ui.view.BookCrudView;
 import kodluyoruz.graduation.project.ui.view.BookSearchView;
 import kodluyoruz.graduation.project.ui.view.GraduationView;
@@ -31,6 +32,8 @@ public class MainView extends HorizontalLayout implements View {
 	private BookCrudView bookCrudView;
 	@Autowired
 	private BookSearchView bookSearchView;
+	@Autowired
+	private AuthorBookCrudView authorBookCrudView;
 
 	public MainView() {
 		init();
@@ -71,7 +74,20 @@ public class MainView extends HorizontalLayout implements View {
 				bookSearchView.retrieveData();
 			}
 		});
-		MenuItemComponent menuItem_3 = new MenuItemComponent("Api Listesi", new MenuItemClickListener() {
+
+		MenuItemComponent menuItem_3 = new MenuItemComponent("Yazar Ekle/Sil/Güncelle", new MenuItemClickListener() {
+			@Override
+			public void clicked() {
+				if (activeView != null) {
+					vlMain.removeComponent(activeView);
+				}
+				vlMain.addComponent(authorBookCrudView);
+				activeView = authorBookCrudView;
+				authorBookCrudView.retrieveData();
+			}
+		});
+
+		MenuItemComponent menuItem_4 = new MenuItemComponent("Api Listesi", new MenuItemClickListener() {
 			@Override
 			public void clicked() {
 				// TODO : Call swagger page
@@ -81,6 +97,7 @@ public class MainView extends HorizontalLayout implements View {
 		vlMenu.addComponent(menuItem_1);
 		vlMenu.addComponent(menuItem_2);
 		vlMenu.addComponent(menuItem_3);
+		vlMenu.addComponent(menuItem_4);
 
 		vlMain = new VerticalLayout();
 		vlMain.setSizeFull();

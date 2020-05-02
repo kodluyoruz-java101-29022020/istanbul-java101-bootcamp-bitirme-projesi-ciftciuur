@@ -147,12 +147,6 @@ public class AuthorBookCrudView extends VerticalLayout implements GraduationView
 
 		} else {
 
-			form.getTxtAuthId().setValue(author.getAuthorId().toString());
-
-			form.getTxtAuthName().setValue(author.getAuthorName().toString());
-
-			form.getTxtAuthSurName().setValue(author.getAuthorSurName().toString());
-
 			form.getBtnDelete().setEnabled(false);
 			form.getBtnUpdate().setEnabled(false);
 

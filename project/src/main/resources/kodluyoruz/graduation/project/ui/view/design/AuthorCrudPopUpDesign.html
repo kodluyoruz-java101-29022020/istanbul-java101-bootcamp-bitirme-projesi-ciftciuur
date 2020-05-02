@@ -1,0 +1,35 @@
+<!doctype html>
+<html>
+ <head>
+  <meta charset="UTF-8">
+  <meta name="design-properties" content="{&quot;RULERS_VISIBLE&quot;:true,&quot;GUIDELINES_VISIBLE&quot;:false,&quot;SNAP_TO_OBJECTS&quot;:true,&quot;SNAP_TO_GRID&quot;:true,&quot;SNAPPING_DISTANCE&quot;:10,&quot;GENERATE_GETTERS&quot;:false,&quot;JAVA_SOURCES_ROOT&quot;:&quot;src/main/java&quot;,&quot;THEME&quot;:&quot;valo&quot;}">
+  <meta name="vaadin-version" content="8.1.5">
+ </head>
+ <body>
+  <vaadin-vertical-layout responsive size-full>
+   <vaadin-horizontal-layout size-full _id="hlLayoutAuthorId" :middle :center>
+    <vaadin-label caption="Yazar ID" plain-text _id="lblAuthId" :middle :center></vaadin-label>
+    <vaadin-text-field readonly _id="txtAuthId" :middle :center></vaadin-text-field>
+   </vaadin-horizontal-layout>
+   <vaadin-horizontal-layout size-full _id="hlLayoutAuthName">
+    <vaadin-label caption="Yazar Adı" plain-text _id="lblAuthName" :middle :center></vaadin-label>
+    <vaadin-text-field _id="txtAuthName" :middle :center></vaadin-text-field>
+   </vaadin-horizontal-layout>
+   <vaadin-horizontal-layout size-full _id="hlLayoutBookId2">
+    <vaadin-label caption="Yazar Soyadı" plain-text _id="lblAuthSurName" :middle :center></vaadin-label>
+    <vaadin-text-field _id="txtAuthSurName" :middle :center></vaadin-text-field>
+   </vaadin-horizontal-layout>
+   <vaadin-horizontal-layout size-full _id="hlLayoutButtons" :middle :center>
+    <vaadin-button icon="fonticon://Vaadin-Icons/e771" style-name="small friendly" width="110px" plain-text _id="btnSave" :middle :center>
+      Kaydet 
+    </vaadin-button>
+    <vaadin-button icon="fonticon://Vaadin-Icons/e771" style-name="primary small" width="110px" plain-text _id="btnUpdate" :middle :center>
+      Güncelle 
+    </vaadin-button>
+    <vaadin-button icon="fonticon://Vaadin-Icons/e69a" style-name="danger small" width="110px" plain-text _id="btnDelete" :middle :center>
+      Sil 
+    </vaadin-button>
+   </vaadin-horizontal-layout>
+  </vaadin-vertical-layout>
+ </body>
+</html>
