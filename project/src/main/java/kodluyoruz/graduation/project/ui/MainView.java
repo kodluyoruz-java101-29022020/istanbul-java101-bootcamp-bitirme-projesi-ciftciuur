@@ -1,14 +1,14 @@
 package kodluyoruz.graduation.project.ui;
 
+import org.hibernate.cfg.Environment;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.web.server.LocalServerPort;
 
-import com.vaadin.icons.VaadinIcons;
 import com.vaadin.navigator.View;
 import com.vaadin.spring.annotation.SpringUI;
 import com.vaadin.ui.HorizontalLayout;
 import com.vaadin.ui.Panel;
 import com.vaadin.ui.VerticalLayout;
-import com.vaadin.ui.themes.ValoTheme;
 
 import kodluyoruz.graduation.project.ui.component.MenuItemComponent;
 import kodluyoruz.graduation.project.ui.component.MenuItemComponent.MenuItemClickListener;
@@ -27,6 +27,9 @@ public class MainView extends HorizontalLayout implements View {
 	private VerticalLayout vlMenu;
 	private VerticalLayout vlMain;
 	private GraduationView activeView;
+
+	@LocalServerPort // server.port'ta tanımlanan değeri alır
+	int serverPort;
 
 	@Autowired
 	private BookCrudView bookCrudView;
@@ -91,7 +94,12 @@ public class MainView extends HorizontalLayout implements View {
 			@Override
 			public void clicked() {
 				// TODO : Call swagger page
-
+				/*
+				 * TODO : menuye eklenebılır fakat vaadin bilgim cok yok bu yüzden yeni bir
+				 * tab'ta acmak zorunda kaldım :(
+				 */
+				String url = "http://localhost:" + serverPort + "/swagger-ui.html#/";
+				getUI().getPage().open(url, "_blank");
 			}
 		});
 		vlMenu.addComponent(menuItem_1);
