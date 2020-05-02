@@ -22,8 +22,6 @@ public class BookDto {
 
 	private BookCategory bookCategory;
 
-	private Boolean deleted;
-
 	public Long getBookId() {
 		return bookId;
 	}
@@ -82,14 +80,6 @@ public class BookDto {
 
 	public void setBookCategory(BookCategory bookCategory) {
 		this.bookCategory = bookCategory;
-	}
-
-	public Boolean getDeleted() {
-		return deleted;
-	}
-
-	public void setDeleted(Boolean deleted) {
-		this.deleted = deleted;
 	}
 
 }

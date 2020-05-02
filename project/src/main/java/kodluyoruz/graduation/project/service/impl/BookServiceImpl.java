@@ -33,7 +33,7 @@ public class BookServiceImpl implements BookService {
 
 	@Override
 	@Transactional
-	public String hardDeleteBook(Long bookId) {
+	public String delete(Long bookId) {
 		if (bookId != null) {
 			Book book = bookRepository.findByBookId(bookId);
 			if (book != null) {
@@ -52,14 +52,6 @@ public class BookServiceImpl implements BookService {
 	}
 
 	@Override
-	@Transactional
-	public void softDeleteBook(Long bookId) {
-		if (bookId != null) {
-			bookRepository.deleteSoftBook(bookId);
-		}
-	}
-
-	@Override
 	public List<Book> searchBookCategory(BookCategory category) {
 		if (category != null) {
 			return bookRepository.findByBookCategory(category);
@@ -70,19 +62,12 @@ public class BookServiceImpl implements BookService {
 	}
 
 	@Override
-	public List<Book> searchBookName(String bookName) {
+	public List<Book> findByBookName(String bookName) {
 		if (bookName != null) {
 			return bookRepository.findByBookName(bookName);
 		} else {
 			return new ArrayList<Book>();
 		}
-
-	}
-
-	@RuntimeAspect(active = true)
-	@Override
-	public List<Book> getAllUnDeletedBooks() {
-		return bookRepository.getAllUnDeletedBooks();
 
 	}
 
@@ -103,5 +88,11 @@ public class BookServiceImpl implements BookService {
 		} else {
 			return new ArrayList<Book>();
 		}
+	}
+
+	@RuntimeAspect(active = true)
+	@Override
+	public List<Book> getAll() {
+		return (List<Book>) bookRepository.findAll();
 	}
 }

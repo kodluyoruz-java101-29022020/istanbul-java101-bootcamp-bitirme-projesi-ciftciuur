@@ -40,9 +40,6 @@ public class Book {
 	@Enumerated(EnumType.STRING)
 	private BookCategory bookCategory;
 
-	// this column use Soft delete -> true = deleted - false = undeleted
-	private Boolean deleted;
-
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "author_id", nullable = false)
 	private Author author;
@@ -117,22 +114,6 @@ public class Book {
 
 	public void setBookCategory(BookCategory bookCategory) {
 		this.bookCategory = bookCategory;
-	}
-
-	public Boolean getDeleted() {
-		return deleted;
-	}
-
-	public void setDeleted(Boolean deleted) {
-		this.deleted = deleted;
-	}
-
-	@Override
-	public String toString() {
-		return "Book [bookId=" + bookId + ", bookName=" + bookName + ", bookNote=" + bookNote + ", bookDescription="
-				+ bookDescription + ", bookPageCount=" + bookPageCount + ", publisher=" + publisher
-				+ ", publishingYear=" + publishingYear + ", bookCategory=" + bookCategory + ", deleted=" + deleted
-				+ ", author=" + author + "]";
 	}
 
 }

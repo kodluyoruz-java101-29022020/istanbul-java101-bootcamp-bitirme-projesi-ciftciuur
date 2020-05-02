@@ -41,7 +41,6 @@ public class BookControllerIntegrationTests {
 		book.setBookName("Integration test book name");
 		book.setBookNote("Integration test book note");
 		book.setBookPageCount("555");
-		book.setDeleted(false);
 		book.setBookCategory(BookCategory.EDUCATİON);
 		book.setPublisher("Turkuaz yayım evi");
 		List<Author> authors = new ArrayList<Author>();

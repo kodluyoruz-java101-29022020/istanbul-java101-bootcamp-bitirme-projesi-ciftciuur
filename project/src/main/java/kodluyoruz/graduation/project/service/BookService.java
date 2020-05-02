@@ -12,20 +12,18 @@ public interface BookService {
 
 	public String save(Book book);
 
-	public String hardDeleteBook(Long bookId);
-
-	public void softDeleteBook(Long bookId);
+	public String delete(Long bookId);
 
 	public List<Book> searchBookCategory(BookCategory category);
 
-	public List<Book> searchBookName(String bookName);
-
-	public List<Book> getAllUnDeletedBooks();
+	public List<Book> findByBookName(String bookName);
 
 	public List<BookCategory> getAllBookCategories();
 
 	public Book findByBookId(Long bookId);
 
 	public List<Book> findByBookCategory(BookCategory bookCategory);
+
+	public List<Book> getAll();
 
 }

@@ -23,6 +23,8 @@ import com.vaadin.ui.Label;
 import com.vaadin.ui.Notification;
 import com.vaadin.ui.VerticalLayout;
 import com.vaadin.ui.Window;
+import com.vaadin.ui.Window.CloseEvent;
+import com.vaadin.ui.Window.CloseListener;
 import com.vaadin.ui.components.grid.ItemClickListener;
 import com.vaadin.ui.themes.ValoTheme;
 
@@ -42,7 +44,6 @@ public class BookCrudView extends VerticalLayout implements GraduationView {
 	protected Button newButton;
 	@Autowired
 	private BookService bookService;
-
 	@Autowired
 	private AuthorService authorService;
 
@@ -109,7 +110,7 @@ public class BookCrudView extends VerticalLayout implements GraduationView {
 	};
 
 	public void retrieveData() {
-		List<Book> dataList = bookService.getAllUnDeletedBooks();
+		List<Book> dataList = bookService.getAll();
 		if (dataList == null) {
 			return;
 		}
@@ -133,7 +134,7 @@ public class BookCrudView extends VerticalLayout implements GraduationView {
 
 			form.getTxtBookName().setValue(book.getBookName());
 
-			form.getCmbBookAuthor().setItems(authorService.getAllUnDeletedAuthors());
+			form.getCmbBookAuthor().setItems(authorService.getAll());
 			form.getCmbBookAuthor().setSelectedItem(authorService.findByAuthorId(book.getAuthor().getAuthorId()));
 			form.getCmbBookAuthor().setItemCaptionGenerator(Author::getAuthorName);
 
@@ -169,11 +170,17 @@ public class BookCrudView extends VerticalLayout implements GraduationView {
 					tempBook.setPublisher(form.getTxtBookPublisher().getValue());
 					tempBook.setPublishingYear(java.util.Date.from(form.getDfBookPublishingDate().getValue()
 							.atStartOfDay().atZone(ZoneId.systemDefault()).toInstant()));
-					tempBook.setDeleted(false);
 					Notification.show(update(tempBook));
 				}
 			});
 
+			form.getBtnDelete().addClickListener(new ClickListener() {
+
+				@Override
+				public void buttonClick(ClickEvent event) {
+					Notification.show(delete(Long.parseLong(form.getTxtBookName().getValue())));
+				}
+			});
 			winForm.setContent(form);
 
 		} else {
@@ -184,7 +191,7 @@ public class BookCrudView extends VerticalLayout implements GraduationView {
 			form.getCmbBookCategory().setItemCaptionGenerator(BookCategory::getCategoryName);
 			form.getCmbBookCategory().setItems(bookService.getAllBookCategories());
 			form.getCmbBookAuthor().setItemCaptionGenerator(Author::getAuthorName);
-			form.getCmbBookAuthor().setItems(authorService.getAllUnDeletedAuthors());
+			form.getCmbBookAuthor().setItems(authorService.getAll());
 			form.getBtnDelete().setEnabled(false);
 			form.getBtnUpdate().setEnabled(false);
 
@@ -202,7 +209,6 @@ public class BookCrudView extends VerticalLayout implements GraduationView {
 					tempBook.setPublisher(form.getTxtBookPublisher().getValue());
 					tempBook.setPublishingYear(java.util.Date.from(form.getDfBookPublishingDate().getValue()
 							.atStartOfDay().atZone(ZoneId.systemDefault()).toInstant()));
-					tempBook.setDeleted(false);
 					Notification.show(save(tempBook));
 				}
 			});
@@ -211,7 +217,13 @@ public class BookCrudView extends VerticalLayout implements GraduationView {
 
 		winForm.center();
 		MainUI.getCurrent().addWindow(winForm);
+		winForm.addCloseListener(new CloseListener() {
 
+			@Override
+			public void windowClose(CloseEvent e) {
+				retrieveData();
+			}
+		});
 	}
 
 	private String save(Book book) {
@@ -233,6 +245,6 @@ public class BookCrudView extends VerticalLayout implements GraduationView {
 	}
 
 	private String delete(Long bookId) {
-		return null;
+		return bookService.delete(bookId);
 	}
 }

@@ -44,12 +44,12 @@ public class BookController {
 
 	@RequestMapping(value = "/api/book/delete", method = RequestMethod.DELETE)
 	public ResponseEntity<String> deleteBook(@RequestParam Long bookId) {
-		return new ResponseEntity<String>(bookService.hardDeleteBook(bookId), HttpStatus.OK);
+		return new ResponseEntity<String>(bookService.delete(bookId), HttpStatus.OK);
 	}
 
 	@RequestMapping(value = "/api/book/search", method = RequestMethod.GET)
 	public ResponseEntity<List<Book>> searchBookByName(@RequestParam String bookName) {
-		return new ResponseEntity<List<Book>>(bookService.searchBookName(bookName), HttpStatus.OK);
+		return new ResponseEntity<List<Book>>(bookService.findByBookName(bookName), HttpStatus.OK);
 	}
 
 	@RequestMapping(value = "/api/book/search/category", method = RequestMethod.GET)

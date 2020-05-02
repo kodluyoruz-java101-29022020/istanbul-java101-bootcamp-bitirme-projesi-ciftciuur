@@ -6,10 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import kodluyoruz.graduation.project.annotation.RuntimeAspect;
 import kodluyoruz.graduation.project.dao.AuthorRepository;
 import kodluyoruz.graduation.project.model.Author;
-import kodluyoruz.graduation.project.model.Book;
 import kodluyoruz.graduation.project.service.AuthorService;
 
 @Service
@@ -19,52 +17,26 @@ public class AuthorServiceImpl implements AuthorService {
 
 	@Override
 	@Transactional
-	public void saveAuthor(Author author) {
+	public String save(Author author) {
 		if (author != null) {
 			authorRepository.save(author);
+			return "Yazar kayıt işlemi başarıyla gerçekleştirildi";
+		} else {
+			return "Yazar boş olamaz";
 		}
 
 	}
 
 	@Override
 	@Transactional
-	public void hardDeleteAuthor(Long authorId) {
+	public String delete(Long authorId) {
 		if (authorId != null) {
 			authorRepository.deleteById(authorId);
+			return "Silme işlemi başarıyla gerçekleştirildi";
+		} else {
+			return "Yazar Id'si boş olamaz";
 		}
 
-	}
-
-	@Override
-	@Transactional
-	public void updateAuthor(Long authorId, Author author) {
-		if (authorId != null) {
-			Author tempAuthor = authorRepository.findByAuthorId(authorId);
-			tempAuthor = author;
-			authorRepository.save(tempAuthor);
-		}
-
-	}
-
-	@Override
-	public void softDeleteAuthor(Long authorId) {
-		if (authorId != null) {
-			authorRepository.deleteSoftAuthor(authorId);
-		}
-
-	}
-
-	@RuntimeAspect(active = true)
-	@Override
-	public List<Author> getAllUnDeletedAuthors() {
-		return authorRepository.getAllUnDeletedAuthors();
-
-	}
-
-	@Override
-	public Author getAuthorDetail() {
-		// TODO Auto-generated method stub
-		return null;
 	}
 
 	@Override
@@ -74,6 +46,11 @@ public class AuthorServiceImpl implements AuthorService {
 		} else {
 			return null;
 		}
+	}
+
+	@Override
+	public List<Author> getAll() {
+		return (List<Author>) authorRepository.findAll();
 	}
 
 }

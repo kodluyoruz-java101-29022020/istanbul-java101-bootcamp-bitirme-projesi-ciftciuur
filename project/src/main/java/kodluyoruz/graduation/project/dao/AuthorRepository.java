@@ -12,21 +12,16 @@ import kodluyoruz.graduation.project.model.Author;
 @Repository
 public interface AuthorRepository extends CrudRepository<Author, Long> {
 
-	@Query("UPDATE Author auth set auth.deleted=1 WHERE auth.authorId=:authId")
-	public void deleteSoftAuthor(@Param("authId") Long authId);
-
 	// This query find author for update author
-	@Query("SELECT auth FROM Author auth WHERE auth.authorId=:authId AND auth.deleted=false or auth.deleted=null")
+	@Query("SELECT auth FROM Author auth WHERE auth.authorId=:authId")
 	public Author findByAuthorId(@Param("authId") Long authId);
 
 	// criteria : author_name -> search authors
-	@Query("SELECT auth FROM Author auth WHERE auth.deleted=false AND auth.authorName LIKE %:authName% ")
+	@Query("SELECT auth FROM Author auth WHERE auth.authorName LIKE %:authName% ")
 	public List<Author> findByAuthorNameLike(@Param("authName") String authName);
 
 	// criteria : author_sur_name -> search authors
-	@Query("SELECT auth FROM Author auth WHERE auth.deleted=false AND auth.authorSurName LIKE %:authSurName% ")
+	@Query("SELECT auth FROM Author auth WHERE auth.authorSurName LIKE %:authSurName% ")
 	public List<Author> findByAuthorSurNameLike(@Param("authSurName") String authSurName);
 
-	@Query("SELECT auth FROM Author auth WHERE auth.deleted=false or auth.deleted=null")
-	public List<Author> getAllUnDeletedAuthors();
 }

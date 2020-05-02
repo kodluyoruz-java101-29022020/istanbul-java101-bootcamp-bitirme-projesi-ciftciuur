@@ -9,18 +9,12 @@ import kodluyoruz.graduation.project.model.Author;
 @Service
 public interface AuthorService {
 
-	public void saveAuthor(Author author);
+	public String save(Author author);
 
-	public void hardDeleteAuthor(Long authorId);
-
-	public void softDeleteAuthor(Long authorId);
-
-	public void updateAuthor(Long authorId, Author author);
-
-	public List<Author> getAllUnDeletedAuthors();
-
-	public Author getAuthorDetail();
+	public String delete(Long authorId);
 
 	public Author findByAuthorId(Long authId);
+
+	public List<Author> getAll();
 
 }

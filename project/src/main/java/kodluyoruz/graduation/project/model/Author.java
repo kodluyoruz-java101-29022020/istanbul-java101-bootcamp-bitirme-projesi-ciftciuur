@@ -5,7 +5,6 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
@@ -21,8 +20,6 @@ public class Author {
 	private String authorName;
 
 	private String authorSurName;
-
-	private Boolean deleted;
 
 	/*
 	 * TODO: author mapped'i aslında booktaki author
@@ -52,14 +49,6 @@ public class Author {
 
 	public void setAuthorSurName(String authorSurName) {
 		this.authorSurName = authorSurName;
-	}
-
-	public Boolean getDeleted() {
-		return deleted;
-	}
-
-	public void setDeleted(Boolean deleted) {
-		this.deleted = deleted;
 	}
 
 }
