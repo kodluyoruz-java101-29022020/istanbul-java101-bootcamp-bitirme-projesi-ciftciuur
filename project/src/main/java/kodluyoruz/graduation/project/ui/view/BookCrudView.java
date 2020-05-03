@@ -3,6 +3,7 @@ package kodluyoruz.graduation.project.ui.view;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.Collection;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -136,22 +137,24 @@ public class BookCrudView extends VerticalLayout implements GraduationView {
 
 			form.getCmbBookAuthor().setItems(authorService.getAll());
 			form.getCmbBookAuthor().setSelectedItem(authorService.findByAuthorId(book.getAuthor().getAuthorId()));
-			form.getCmbBookAuthor().setItemCaptionGenerator(Author::getAuthorName);
+			form.getCmbBookAuthor().setItemCaptionGenerator(item -> item.getAuthorName());
 
 			form.getTxtBookNote().setValue(book.getBookNote());
 
-			form.getTxtBookDescription().setValue(book.getBookDescription());
+			form.getTxtBookDescription().setValue(book.getBookDescription() != null ? book.getBookDescription() : "");
 
-			form.getTxtBookPageCount().setValue(book.getBookPageCount());
+			form.getTxtBookPageCount().setValue(book.getBookPageCount() != null ? book.getBookPageCount() : "");
 
-			form.getTxtBookPublisher().setValue(book.getPublisher());
+			form.getTxtBookPublisher().setValue(book.getPublisher() != null ? book.getPublisher() : "");
 
 			form.getCmbBookCategory().setItems(BookCategory.values());
 			form.getCmbBookCategory().setSelectedItem(book.getBookCategory());
 			form.getCmbBookCategory().setItemCaptionGenerator(BookCategory::getCategoryName);
 
 			form.getDfBookPublishingDate()
-					.setValue(book.getPublishingYear().toInstant().atZone(ZoneId.systemDefault()).toLocalDate());
+					.setValue(book.getPublishingYear() != null
+							? book.getPublishingYear().toInstant().atZone(ZoneId.systemDefault()).toLocalDate()
+							: new Date().toInstant().atZone(ZoneId.systemDefault()).toLocalDate());
 
 			form.getBtnSave().setEnabled(false);
 
@@ -190,7 +193,8 @@ public class BookCrudView extends VerticalLayout implements GraduationView {
 			form.getDfBookPublishingDate().setValue(LocalDate.now());
 			form.getCmbBookCategory().setItemCaptionGenerator(BookCategory::getCategoryName);
 			form.getCmbBookCategory().setItems(bookService.getAllBookCategories());
-			form.getCmbBookAuthor().setItemCaptionGenerator(Author::getAuthorName);
+			form.getCmbBookAuthor()
+					.setItemCaptionGenerator(item -> item.getAuthorName() + " " + item.getAuthorSurName());
 			form.getCmbBookAuthor().setItems(authorService.getAll());
 			form.getBtnDelete().setEnabled(false);
 			form.getBtnUpdate().setEnabled(false);
