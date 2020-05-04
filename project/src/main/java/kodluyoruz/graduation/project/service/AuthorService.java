@@ -9,7 +9,7 @@ import kodluyoruz.graduation.project.model.Author;
 @Service
 public interface AuthorService {
 
-	public String save(Author author);
+	public Author save(Author author);
 
 	public String delete(Long authorId);
 

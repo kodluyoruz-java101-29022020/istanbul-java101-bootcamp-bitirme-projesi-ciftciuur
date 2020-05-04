@@ -17,12 +17,11 @@ public class AuthorServiceImpl implements AuthorService {
 
 	@Override
 	@Transactional
-	public String save(Author author) {
+	public Author save(Author author) {
 		if (author != null) {
-			authorRepository.save(author);
-			return "Yazar kayıt işlemi başarıyla gerçekleştirildi";
+			return authorRepository.save(author);
 		} else {
-			return "Yazar boş olamaz";
+			return null;
 		}
 
 	}
