@@ -17,7 +17,7 @@
 	<description>Kodluyoruz Bitirme Projesi Created By -> Uğur Çiftçi (@ciftciuur)</description>
 
 	<properties>
-		<vaadin.version>8.6.0</vaadin.version>
+		<vaadin.version>8.12.3</vaadin.version>
 		<vaadin.plugin.version>8.6.0</vaadin.plugin.version>
 		<java.version>1.8</java.version>
 	</properties>
